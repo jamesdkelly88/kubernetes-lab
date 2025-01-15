@@ -1,0 +1,11 @@
+- [x] read akeyless config secret
+- [x] kind cluster
+- [ ] talos cluster
+- [x] write config secrets
+- [x] update config role to allow delete (or suppress delete on secret resources)
+- [x] read cluster akeyless secret
+- [x] create kubernetes secret
+- [ ] deploy flux
+- [ ] deploy argocd
+- [ ] bootstrap flux
+- [ ] bootstrap argocd

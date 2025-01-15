@@ -1,0 +1,55 @@
+version: '3'
+
+dotenv: [".env"]
+
+tasks:
+  hello:
+    cmds:
+      - echo "Hello from task"
+
+
+  tf-create-alpha-local:
+    desc: deploy alpha cluster to local host with terraform
+    aliases:
+      - tf-a-l 
+    cmds:
+      - task: terraform-build
+        vars: { CLUSTER: 'alpha', HOST: 'local' }
+      # - sleep 120
+      - task: terraform-bootstrap
+        vars: { CLUSTER: 'alpha', HOST: 'local' }
+
+
+  tf-destroy-alpha-local:
+    desc: destroy alpha cluster to local host with terraform
+    aliases:
+      - tfd-a-l 
+    cmds:
+      - task: terraform-bootstrap
+        vars: { CLUSTER: 'alpha', HOST: 'local', DESTROY: '-destroy ' }
+      - task: terraform-build
+        vars: { CLUSTER: 'alpha', HOST: 'local', DESTROY: '-destroy ' }
+      
+
+  terraform-build:
+    internal: true
+    vars:
+      HOST: '{{.HOST}}'
+      DESTROY: '{{.DESTROY | default "" }}'
+    dir: '{{ .ROOT_DIR }}/terraform/build'
+    cmds:
+    - terraform init
+    - terraform plan {{.DESTROY}}-var cluster={{.CLUSTER}} -var host={{.HOST}} -input=false -out=tfplan
+    - terraform apply tfplan
+
+  terraform-bootstrap:
+    internal: true
+    vars:
+      CLUSTER: '{{.CLUSTER}}'
+      HOST: '{{.HOST}}'
+      DESTROY: '{{.DESTROY | default "" }}'
+    dir: '{{ .ROOT_DIR }}/terraform/bootstrap'
+    cmds:
+    - terraform init
+    - terraform plan {{.DESTROY}}-var cluster={{.CLUSTER}} -var host={{.HOST}} -input=false -out=tfplan
+    - terraform apply tfplan
