@@ -33,10 +33,12 @@ locals {
     alpha = {
       argocd = false
       fluxcd = true
+      branch = "main"
     }
     beta = {
       argocd = true
       fluxcd = false
+      branch = "main"
     }
   }
 }
