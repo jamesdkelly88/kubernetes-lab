@@ -1,10 +1,18 @@
+resource "time_sleep" "wait_for_cluster" {
+  depends_on = [kind_cluster.kind]
+
+  create_duration = "2m"
+}
+
 resource "kubernetes_namespace" "external-secrets" {
   metadata {
     name = "external-secrets"
   }
+
+  depends_on = [ time_sleep.wait_for_cluster ]
 }
 
-resource "kubernetes_secret" "example" {
+resource "kubernetes_secret" "akeyless-external-secret" {
   metadata {
     name = "akeyless-secret-creds"
     namespace = "external-secrets"

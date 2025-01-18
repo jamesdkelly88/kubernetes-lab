@@ -33,6 +33,11 @@ Kubernetes homelab
 
 ## .env file
 
+```
+TF_TOKEN_app_terraform_io=
+TF_VAR_akeyless_id=
+TF_VAR_akeyless_key=
+```
 
 
 ## Usage
@@ -46,12 +51,25 @@ Kubernetes homelab
 
 ### Terraform
 ```sh
-cd terraform/build
-terraform init
-env $(cat ../../.env | xargs) terraform plan -var 'cluster=alpha' -var 'host=local' -out=tfplan
-terraform apply tfplan
-cd ../bootstrap
-terraform init
-env $(cat ../../.env | xargs) terraform plan -var 'cluster=alpha' -var 'host=local' -out=tfplan
-terraform apply tfplan
+# open terraform directory
+cd terraform
+# select workspace
+export TF_WORKSPACE=local
+# initialise (with secrets)
+env $(cat ../.env | xargs) terraform init
+# plan (with secrets)
+env $(cat ../.env | xargs) terraform plan -var 'cluster=alpha' -var 'host=local' -out=tfplan
+# apply plan (with secrets)
+env $(cat ../.env | xargs) terraform apply tfplan
+
+
+
+# plan destroy (with secrets)
+env $(cat ../.env | xargs) terraform plan -var 'cluster=alpha' -var 'host=local' -out=tfplan -destroy
+```
+
+### Kubectl
+
+```sh
+KUBECONFIG=~/.kube/local kubectl get nodes
 ```

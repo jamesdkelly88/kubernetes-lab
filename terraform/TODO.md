@@ -9,3 +9,7 @@
 - [ ] deploy argocd
 - [ ] bootstrap flux
 - [ ] bootstrap argocd
+- [x] try merging back into 1 folder with dynamic provider config
+- [x] delete split folders and tidy up docs
+- [x] cloud tfstate
+- [x] multiple local clusters
