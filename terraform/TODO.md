@@ -5,9 +5,9 @@
 - [x] update config role to allow delete (or suppress delete on secret resources)
 - [x] read cluster akeyless secret
 - [x] create kubernetes secret
-- [ ] deploy flux
+- [x] deploy flux
 - [ ] deploy argocd
-- [ ] bootstrap flux
+- [x] bootstrap flux
 - [ ] bootstrap argocd
 - [x] try merging back into 1 folder with dynamic provider config
 - [x] delete split folders and tidy up docs

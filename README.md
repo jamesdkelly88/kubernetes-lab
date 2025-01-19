@@ -73,3 +73,9 @@ env $(cat ../.env | xargs) terraform plan -var 'cluster=alpha' -var 'host=local'
 ```sh
 KUBECONFIG=~/.kube/local kubectl get nodes
 ```
+
+#### Port forwarding
+
+```sh
+KUBECONFIG=~/.kube/local kubectl port-forward deployment/<name> -n <namespace> <localPort>:<containerPort>
+```

@@ -1,0 +1,8 @@
+- [x] find basic helm chart
+- [x] deploy with flux
+- [ ] values file for flux
+- [ ] overlay value file for flux
+- [ ] deploy with argocd
+- [ ] values file for argocd
+- [ ] overlay value file for argocd
+- [ ] same values files for both argocd and flux?
