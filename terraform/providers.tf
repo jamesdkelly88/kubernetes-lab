@@ -1,8 +1,10 @@
 terraform {
 
+  required_version = "~> 1.8"
+
   cloud {
     organization = "jdkhomelab-k8s"
-    hostname = "app.terraform.io"
+    hostname     = "app.terraform.io"
   }
 
   required_providers {
@@ -12,22 +14,22 @@ terraform {
     }
 
     flux = {
-      source = "fluxcd/flux"
+      source  = "fluxcd/flux"
       version = "1.4.0"
     }
 
     kind = {
-      source = "tehcyx/kind"
+      source  = "tehcyx/kind"
       version = "0.7.0"
     }
 
     kubernetes = {
-      source = "hashicorp/kubernetes"
+      source  = "hashicorp/kubernetes"
       version = "2.35.1"
     }
 
     time = {
-      source = "hashicorp/time"
+      source  = "hashicorp/time"
       version = "0.12.1"
     }
   }
@@ -37,20 +39,20 @@ provider "akeyless" {
   api_gateway_address = "https://api.akeyless.io"
 
   api_key_login {
-    access_id = var.akeyless_id
+    access_id  = var.akeyless_id
     access_key = var.akeyless_key
   }
 }
 
 provider "flux" {
   kubernetes = {
-    host                   = local.hosts[var.host].type == "kind" ? kind_cluster.kind[0].endpoint : null
-    client_certificate     = local.hosts[var.host].type == "kind" ? kind_cluster.kind[0].client_certificate : null
-    client_key             = local.hosts[var.host].type == "kind" ? kind_cluster.kind[0].client_key : null
-    cluster_ca_certificate = local.hosts[var.host].type == "kind" ? kind_cluster.kind[0].cluster_ca_certificate : null
+    host                   = local.host.type == "kind" ? kind_cluster.kind[0].endpoint : null
+    client_certificate     = local.host.type == "kind" ? kind_cluster.kind[0].client_certificate : null
+    client_key             = local.host.type == "kind" ? kind_cluster.kind[0].client_key : null
+    cluster_ca_certificate = local.host.type == "kind" ? kind_cluster.kind[0].cluster_ca_certificate : null
   }
   git = {
-    url = "https://github.com/jamesdkelly88/kubernetes-lab"
+    url    = "https://github.com/jamesdkelly88/kubernetes-lab"
     branch = local.clusters[var.cluster].branch
     http = {
       username = "git"
@@ -62,10 +64,10 @@ provider "flux" {
 provider "kind" {}
 
 provider "kubernetes" {
-  host                   = local.hosts[var.host].type == "kind" ? kind_cluster.kind[0].endpoint : null
-  client_certificate     = local.hosts[var.host].type == "kind" ? kind_cluster.kind[0].client_certificate : null
-  client_key             = local.hosts[var.host].type == "kind" ? kind_cluster.kind[0].client_key : null
-  cluster_ca_certificate = local.hosts[var.host].type == "kind" ? kind_cluster.kind[0].cluster_ca_certificate : null
+  host                   = local.host.type == "kind" ? kind_cluster.kind[0].endpoint : null
+  client_certificate     = local.host.type == "kind" ? kind_cluster.kind[0].client_certificate : null
+  client_key             = local.host.type == "kind" ? kind_cluster.kind[0].client_key : null
+  cluster_ca_certificate = local.host.type == "kind" ? kind_cluster.kind[0].cluster_ca_certificate : null
 }
 
 provider "time" {}

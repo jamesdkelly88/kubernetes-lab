@@ -50,32 +50,39 @@ TF_VAR_akeyless_key=
 - Secrets are stored remotely in Akeyless, including Git tokens, Kubeconfig and Talosconfig files. The only secrets known by the runner (user or pipeline) are the Akeyless credential and the Terraform cloud access token.
 
 ### Terraform
+
+#### With Task
+
+`task build CLUSTER=alpha` and `task destroy CLUSTER=alpha`
+
+#### Manually
+
 ```sh
 # open terraform directory
 cd terraform
 # select workspace
-export TF_WORKSPACE=local
+export TF_WORKSPACE=alpha
 # initialise (with secrets)
 env $(cat ../.env | xargs) terraform init
 # plan (with secrets)
-env $(cat ../.env | xargs) terraform plan -var 'cluster=alpha' -var 'host=local' -out=tfplan
+env $(cat ../.env | xargs) terraform plan -var 'cluster=alpha' -out=tfplan
 # apply plan (with secrets)
 env $(cat ../.env | xargs) terraform apply tfplan
 
 
 
 # plan destroy (with secrets)
-env $(cat ../.env | xargs) terraform plan -var 'cluster=alpha' -var 'host=local' -out=tfplan -destroy
+env $(cat ../.env | xargs) terraform plan -var 'cluster=alpha' -out=tfplan -destroy
 ```
 
 ### Kubectl
 
 ```sh
-KUBECONFIG=~/.kube/local kubectl get nodes
+KUBECONFIG=~/.kube/local1 kubectl get nodes
 ```
 
 #### Port forwarding
 
 ```sh
-KUBECONFIG=~/.kube/local kubectl port-forward deployment/<name> -n <namespace> <localPort>:<containerPort>
+KUBECONFIG=~/.kube/local1 kubectl port-forward deployment/[name] -n [namespace] [localPort]:[containerPort]
 ```

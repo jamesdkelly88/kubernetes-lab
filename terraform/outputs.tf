@@ -1,17 +1,17 @@
-output ip_address {
-  value = local.hosts.local.ip_address
+output "ip_address" {
+  value = local.host.ip_address
 }
 
-output cluster {
+output "cluster" {
   value = var.cluster
 }
 
-output type {
-  value = local.hosts[var.host].type
+output "type" {
+  value = local.host.type
 }
 
-output endpoint {
-  value = local.hosts[var.host].type == "kind" ? kind_cluster.kind[0].endpoint : null
+output "endpoint" {
+  value = local.host.type == "kind" ? kind_cluster.kind[0].endpoint : null
 }
 
 # output secret_test {

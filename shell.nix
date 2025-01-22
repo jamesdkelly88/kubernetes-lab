@@ -8,6 +8,7 @@
     kubectl
     talosctl
     terraform
+    tflint
   ];
 
   shellHook = ''

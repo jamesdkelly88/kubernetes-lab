@@ -9,22 +9,22 @@ resource "kubernetes_namespace" "external-secrets" {
     name = "external-secrets"
   }
 
-  depends_on = [ time_sleep.wait_for_cluster ]
+  depends_on = [time_sleep.wait_for_cluster]
 }
 
 resource "kubernetes_secret" "akeyless-external-secret" {
   metadata {
-    name = "akeyless-secret-creds"
+    name      = "akeyless-secret-creds"
     namespace = "external-secrets"
   }
 
   data = {
-    accessId = data.akeyless_static_secret.akeyless_id.value
-    accessType = "api_key"
+    accessId        = data.akeyless_static_secret.akeyless_id.value
+    accessType      = "api_key"
     accessTypeParam = data.akeyless_static_secret.akeyless_key.value
   }
 
   type = "kubernetes.io/generic"
 
-  depends_on = [ kubernetes_namespace.external-secrets ]
+  depends_on = [kubernetes_namespace.external-secrets]
 }

@@ -2,54 +2,101 @@ version: '3'
 
 dotenv: [".env"]
 
+vars:
+  DOCS_URL: https://taskfile.dev/usage/
+
 tasks:
+
+# Task
+
+  docs:
+    desc: Open the Taskfile docs
+    silent: true
+    cmds:
+    - task: docs_linux
+    - task: docs_mac
+    - task: docs_windows
+
+  docs_linux:
+    internal: true
+    platforms: [linux]
+    silent: true
+    cmds:
+    - xdg-open {{.DOCS_URL}}
+    - exit 0
+
+  docs_mac:
+    internal: true
+    platforms: [darwin]
+    silent: true
+    cmds:
+    - open {{.DOCS_URL}}
+
+  docs_windows:
+    internal: true
+    platforms: [windows]
+    silent: true
+    cmds:
+    - start {{.DOCS_URL}}
+
   hello:
     cmds:
       - echo "Hello from task"
 
+# Kubernetes
 
-  tf-create-alpha-local:
-    desc: deploy alpha cluster to local host with terraform
-    aliases:
-      - tf-a-l 
-    cmds:
-      - task: terraform-plan
-        vars: { CLUSTER: 'alpha', HOST: 'local' }
+  # apply kustomize folder
+  # remove kustomize folder
+  # upgrade
+  # token for dashboard
 
-  tf-destroy-alpha-local:
-    desc: destroy alpha cluster on local host with terraform
-    aliases:
-      - tfd-a-l 
-    cmds:
-      - task: terraform-plan
-        vars: { CLUSTER: 'alpha', HOST: 'local', DESTROY: '-destroy ' }
+# Terraform
 
-  tf-create-beta-local2:
-    desc: deploy beta cluster to local2 host with terraform
-    aliases:
-      - tf-b-2 
-    cmds:
-      - task: terraform-plan
-        vars: { CLUSTER: 'beta', HOST: 'local2' }
-
-  tf-destroy-beta-local2:
-    desc: destroy beta cluster on local2 host with terraform
-    aliases:
-      - tfd-b-2
-    cmds:
-      - task: terraform-plan
-        vars: { CLUSTER: 'beta', HOST: 'local2', DESTROY: '-destroy ' }
-      
-
-  terraform-plan:
-    internal: true
-    vars:
-      HOST: '{{.HOST}}'
-      DESTROY: '{{.DESTROY | default "" }}'
-    dir: '{{ .ROOT_DIR }}/terraform'
+  init:
     cmds:
     - terraform init
-    - terraform plan {{.DESTROY}}-var cluster={{.CLUSTER}} -var host={{.HOST}} -input=false -out=tfplan
-    - terraform apply tfplan
+    desc: Initialise terraform
+    dir: '{{ .ROOT_DIR }}/terraform'
     env:
-      TF_WORKSPACE: '{{.HOST}}'
+      TF_WORKSPACE: "{{.CLUSTER}}"
+    requires:
+      vars: [ TF_TOKEN_app_terraform_io, CLUSTER ]
+
+  plan:
+    cmds:
+    - terraform fmt *.tf
+    - tflint
+    - terraform plan {{.DESTROY}}-var cluster={{.CLUSTER}} -input=false -out=tfplan
+    desc: Run terraform plan for a cluster
+    dir: '{{ .ROOT_DIR }}/terraform'
+    env:
+      TF_WORKSPACE: "{{.CLUSTER}}"
+    requires:
+      vars: [ TF_TOKEN_app_terraform_io, TF_VAR_akeyless_id, TF_VAR_akeyless_key, CLUSTER ]
+    vars:
+      DESTROY: '{{.DESTROY | default "" }}'
+
+  build:
+    cmds:
+    - task: init
+    - task: plan
+    - terraform apply tfplan
+    desc: Build a cluster with terraform
+    dir: '{{ .ROOT_DIR }}/terraform'
+    env:
+      TF_WORKSPACE: "{{.CLUSTER}}"
+    requires:
+      vars: [ TF_TOKEN_app_terraform_io, TF_VAR_akeyless_id, TF_VAR_akeyless_key, CLUSTER ]
+
+  destroy:
+    cmds:
+    - task: init
+    - task: plan
+      vars: { DESTROY: '-destroy ' }
+    - terraform apply tfplan
+    desc: Destroy a cluster with terraform
+    dir: '{{ .ROOT_DIR }}/terraform'
+    env:
+      TF_WORKSPACE: "{{.CLUSTER}}"
+    requires:
+      vars: [ TF_TOKEN_app_terraform_io, TF_VAR_akeyless_id, TF_VAR_akeyless_key, CLUSTER ]
