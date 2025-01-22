@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: beta
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jamesdkelly88/kubernetes-lab.git
+    targetRevision: main
+    path: clusters/beta/apps
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
