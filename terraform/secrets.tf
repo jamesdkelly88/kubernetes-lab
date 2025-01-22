@@ -9,6 +9,12 @@ resource "akeyless_static_secret" "talosconfig" {
   value = null
 }
 
+resource "akeyless_static_secret" "argocd" {
+  count = local.cluster.argocd == true ? 1 : 0
+  path  = "/k8s/config/${local.host.hostname}/argocd"
+  value = data.kubernetes_secret.argocd[0].data.password
+}
+
 data "akeyless_static_secret" "akeyless_id" {
   path = "/k8s/config/credentials/${local.host.secret}/user"
 }

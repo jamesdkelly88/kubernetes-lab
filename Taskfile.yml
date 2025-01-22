@@ -64,6 +64,7 @@ tasks:
 
   plan:
     cmds:
+    - task: init
     - terraform fmt *.tf
     - tflint
     - terraform plan {{.DESTROY}}-var cluster={{.CLUSTER}} -input=false -out=tfplan
@@ -78,7 +79,6 @@ tasks:
 
   build:
     cmds:
-    - task: init
     - task: plan
     - terraform apply tfplan
     desc: Build a cluster with terraform

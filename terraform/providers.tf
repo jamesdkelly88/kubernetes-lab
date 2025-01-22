@@ -18,6 +18,11 @@ terraform {
       version = "1.4.0"
     }
 
+    helm = {
+      source  = "hashicorp/helm"
+      version = "3.0.0-pre1"
+    }
+
     kind = {
       source  = "tehcyx/kind"
       version = "0.7.0"
@@ -58,6 +63,15 @@ provider "flux" {
       username = "git"
       password = data.akeyless_static_secret.github_token.value
     }
+  }
+}
+
+provider "helm" {
+  kubernetes = {
+    host                   = local.host.type == "kind" ? kind_cluster.kind[0].endpoint : null
+    client_certificate     = local.host.type == "kind" ? kind_cluster.kind[0].client_certificate : null
+    client_key             = local.host.type == "kind" ? kind_cluster.kind[0].client_key : null
+    cluster_ca_certificate = local.host.type == "kind" ? kind_cluster.kind[0].cluster_ca_certificate : null
   }
 }
 
