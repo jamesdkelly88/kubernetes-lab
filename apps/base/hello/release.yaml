@@ -13,6 +13,8 @@ spec:
         name: cloudecho
         namespace: hello
       interval: 12h
-  values:
-    replicaCount: 2
+  valuesFrom:
+    - kind: ConfigMap
+      name: values
+    
 
