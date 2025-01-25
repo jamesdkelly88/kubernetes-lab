@@ -21,7 +21,7 @@ locals {
       ports = {
         8080  = 80
         8443  = 443
-        30001 = 30001
+        30001 = 30000
       }
       secret = "local"
       type   = "kind"

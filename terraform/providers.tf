@@ -28,6 +28,11 @@ terraform {
       version = "0.7.0"
     }
 
+    kubectl = {
+      source  = "gavinbunney/kubectl"
+      version = ">= 1.7.0"
+    }
+
     kubernetes = {
       source  = "hashicorp/kubernetes"
       version = "2.35.1"
@@ -76,6 +81,14 @@ provider "helm" {
 }
 
 provider "kind" {}
+
+provider "kubectl" {
+  host                   = local.host.type == "kind" ? kind_cluster.kind[0].endpoint : null
+  client_certificate     = local.host.type == "kind" ? kind_cluster.kind[0].client_certificate : null
+  client_key             = local.host.type == "kind" ? kind_cluster.kind[0].client_key : null
+  cluster_ca_certificate = local.host.type == "kind" ? kind_cluster.kind[0].cluster_ca_certificate : null
+}
+
 
 provider "kubernetes" {
   host                   = local.host.type == "kind" ? kind_cluster.kind[0].endpoint : null

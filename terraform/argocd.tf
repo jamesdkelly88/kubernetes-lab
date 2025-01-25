@@ -33,8 +33,8 @@ data "kubernetes_secret" "argocd" {
   }
 }
 
-resource "kubernetes_manifest" "argo-app" {
+resource "kubectl_manifest" "argo-app" {
   count      = local.cluster.argocd == true ? 1 : 0
   depends_on = [helm_release.argocd]
-  manifest   = provider::kubernetes::manifest_decode(file("../clusters/${var.cluster}/argocd/root-app.yaml"))
+  yaml_body  = file("../clusters/${var.cluster}/argocd.yaml")
 }
