@@ -8,26 +8,31 @@ spec:
   - list:
       elements:
         - appName: hello
+          branch: main
+          chart: hello
+          environment: base
           namespace: hello
+          repository: https://cloudecho.github.io/charts/
+          version: 0.1.2
+          
   template:
     metadata:
       name: "{{appName}}"
       annotations:
         argocd.argoproj.io/manifest-generate-paths: ".;.."
     spec:
-      project: bootstrap
-      source:
-        repoURL: git@github.com:mprzygrodzki/aws-eks-bootstrap.git
-        targetRevision: HEAD
-        path: "charts/{{appName}}"
+      project: default
+      sources:
+      - repoURL: "{{repository}}"
+        chart: "{{chart}}"
+        targetRevision: "{{version}}"
         helm:
-          # Release name override (defaults to application name)
-          releaseName: "{{appName}}"
           valueFiles:
-          - "values.yaml"
-          - "../../values/{{name}}/{{appName}}/values.yaml"
+          - $self/apps/{{environment}}/{{appName}}/values.yaml
+      - repoURL: https://github.com/jamesdkelly88/kubernetes-lab.git
+        targetRevision: '{{ branch }}'
+        ref: self
       destination:
-        # Default base cluster
         name: in-cluster
         namespace: "{{namespace}}"
       syncPolicy:
