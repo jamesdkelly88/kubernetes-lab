@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/jamesdkelly88/kubernetes-lab.git
     targetRevision: main
-    path: clusters/beta/apps
+    path: clusters/beta/argocd
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:

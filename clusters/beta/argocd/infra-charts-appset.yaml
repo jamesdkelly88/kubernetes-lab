@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: infra-charts
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+        - appName: ingress-nginx
+          branch: main
+          chart: ingress-nginx
+          environment: base
+          namespace: ingress-nginx
+          repository: https://kubernetes.github.io/ingress-nginx
+          version: 4.11.3
+          
+  template:
+    metadata:
+      name: "{{appName}}"
+      annotations:
+        argocd.argoproj.io/manifest-generate-paths: ".;.."
+    spec:
+      project: default
+      sources:
+      - repoURL: "{{repository}}"
+        chart: "{{chart}}"
+        targetRevision: "{{version}}"
+        helm:
+          valueFiles:
+          - $self/infrastructure/{{environment}}/{{appName}}/values.yaml
+      - repoURL: https://github.com/jamesdkelly88/kubernetes-lab.git
+        targetRevision: '{{ branch }}'
+        ref: self
+      destination:
+        name: in-cluster
+        namespace: "{{namespace}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

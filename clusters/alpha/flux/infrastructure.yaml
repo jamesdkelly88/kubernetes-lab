@@ -10,5 +10,5 @@
 #   sourceRef:
 #     kind: GitRepository
 #     name: flux-system
-#   path: ../infrastructure
+#   path: infrastructure
 #   prune: true

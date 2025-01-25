@@ -31,22 +31,23 @@ Kubernetes homelab
 │   └── test
 ├── clusters
 │   ├── alpha
-│   │   ├── apps
+│   │   ├── argocd.yaml                          # argocd application defining applicationsets directory to use
+│   │   ├── argocd
 │   │   │   ├── charts-appset.yaml               # argocd applicationset selecting helm apps
-│   │   │   ├── kustomization.yaml               # fluxcd kustomize selecting apps
-│   │   │   └── manifests-appset.yaml            # argocd applicationset selecting manifest apps
-│   │   ├── flux
-│   │   │   ├── flux-system                      # auto generated
-│   │   │   │   ├── gotk-components.yaml
-│   │   │   │   ├── gotk-sync.yaml
-│   │   │   │   └── kustomization.yaml
-│   │   │   ├── apps.yaml                        # flux definition for apps/kustomization.yaml
-│   │   │   └── infrastructure.yaml              # flux definition for infrastructure/kustomization.yaml
-│   │   ├── infrastructure
-│   │   │   ├── charts-appset.yaml               # argocd applicationset selecting helm infrastructure components
-│   │   │   ├── kustomization.yaml               # fluxcd kustomize selecting infrastructure components
-│   │   │   └── manifests-appset.yaml            # argocd applicationset selecting manifest infrastructure components
-│   │   └── argocd.yaml                          # argocd application defining applicationsets directory to use
+│   │   │   ├── infra-charts-appset.yaml         # argocd applicationset selecting helm infrastructure components
+│   │   │   ├── manifests-appset.yaml            # argocd applicationset selecting manifest apps
+│   │   │   └── infra-manifests-appset.yaml      # argocd applicationset selecting manifest infrastructure components
+│   │   └── flux
+│   │       ├── apps.yaml                        # flux definition for apps/kustomization.yaml
+│   │       ├── apps
+│   │       │   └── kustomization.yaml           # fluxcd kustomize selecting apps
+│   │       ├── flux-system                      # auto generated
+│   │       │   ├── gotk-components.yaml
+│   │       │   ├── gotk-sync.yaml
+│   │       │   └── kustomization.yaml
+│   │       ├── infrastructure.yaml              # flux definition for infrastructure/kustomization.yaml
+│   │       └── infrastructure
+│   │           └── kustomization.yaml           # fluxcd kustomize selecting infrastructure components
 │   └── beta
 ├── terraform
 │   ├── locals.tf                                # host and cluster configuration
