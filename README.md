@@ -77,6 +77,7 @@ TF_VAR_akeyless_key=
 - The kustomization defines which infra and apps (and which environment overlays) are included in the cluster e.g Alpha uses the `local` overlays and DNS, Phi uses the `prod` ones.
 - Local clusters use Kind, remote clusters use Talos. Clusters are deployed using Terraform, which bootstraps the selected CD operator with the initial resource. Everything else is then deployed and managed by CI/CD. This requires 2 stages so the kubeconfig of the cluster can be used by the Kubernetes Terraform provider.
 - Secrets are stored remotely in Akeyless, including Git tokens, Kubeconfig and Talosconfig files. The only secrets known by the runner (user or pipeline) are the setup Akeyless credential and the Terraform cloud access token.
+- Ingress should **not** specify an ingress class, as each ingress controller should define itself as the default. This allows for trying out different controllers without having to patch the ingress definitions.
 
 ### Akeyless
 
