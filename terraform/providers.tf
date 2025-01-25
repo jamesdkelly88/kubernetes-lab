@@ -87,6 +87,7 @@ provider "kubectl" {
   client_certificate     = local.host.type == "kind" ? kind_cluster.kind[0].client_certificate : null
   client_key             = local.host.type == "kind" ? kind_cluster.kind[0].client_key : null
   cluster_ca_certificate = local.host.type == "kind" ? kind_cluster.kind[0].cluster_ca_certificate : null
+  load_config_file       = false
 }
 
 

@@ -21,7 +21,8 @@ locals {
       ports = {
         8080  = 80
         8443  = 443
-        30001 = 30000
+        31000 = 30000
+        31001 = 30001
       }
       secret = "local"
       type   = "kind"
@@ -42,8 +43,6 @@ locals {
       host   = "local2"
     }
   }
-
-
 
   cluster    = local.clusters[var.cluster]
   host       = local.hosts[local.cluster.host]

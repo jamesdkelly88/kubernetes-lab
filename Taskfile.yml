@@ -100,3 +100,15 @@ tasks:
       TF_WORKSPACE: "{{.CLUSTER}}"
     requires:
       vars: [ TF_TOKEN_app_terraform_io, TF_VAR_akeyless_id, TF_VAR_akeyless_key, CLUSTER ]
+
+  force-delete:
+    cmds:
+    - terraform state rm $(terraform state list)
+    - kind delete cluster -n {{.CLUSTER}}
+    - echo "Remember to delete akeyless secrets"
+    desc: Delete a cluster when terraform destroy fails
+    dir: '{{ .ROOT_DIR }}/terraform'
+    env:
+      TF_WORKSPACE: "{{.CLUSTER}}"
+    requires:
+      vars: [ TF_TOKEN_app_terraform_io, TF_VAR_akeyless_id, TF_VAR_akeyless_key, CLUSTER ]

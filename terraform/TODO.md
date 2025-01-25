@@ -6,11 +6,10 @@
 - [x] read cluster akeyless secret
 - [x] create kubernetes secret
 - [x] deploy flux
-- [ ] deploy argocd
+- [x] deploy argocd
 - [x] bootstrap flux
-- [ ] bootstrap argocd
+- [x] bootstrap argocd
 - [x] try merging back into 1 folder with dynamic provider config
 - [x] delete split folders and tidy up docs
 - [x] cloud tfstate
 - [x] multiple local clusters
-- [ ] update flux config so creating and destroying clusters doesn't push updates to the repo
