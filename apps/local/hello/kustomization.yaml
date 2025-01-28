@@ -6,6 +6,7 @@ resources:
 
 configMapGenerator:
 - name: values
+  behavior: replace
   files:
   - values.yaml
 
