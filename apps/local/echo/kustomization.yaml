@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../base/echo
+
+images:
+- name: hashicorp/http-echo
+  newTag: "latest"
+
+replicas:
+- name: echo
+  count: 1
+
+patches:
+- patch: |-
+    # - op: replace
+    #   path: /spec/tls/0/hosts
+    #   value: 
+    #   - hello-world.dev.lan
+    - op: replace
+      path: /spec/rules/0/host
+      value: echo.jklocal.duckdns.org
+  target:
+    group: networking.k8s.io
+    version: v1
+    kind: Ingress
+    name: echo
