@@ -10,7 +10,7 @@ spec:
         - appName: hello
           branch: main
           chart: hello
-          environment: base
+          environment: local
           namespace: hello
           repository: https://cloudecho.github.io/charts/
           version: 0.1.2

@@ -1,0 +1,3 @@
+replicaCount: 1
+ingress.enabled: true
+ingress.hosts[0].host: hello.jklocal.duckdns.org
