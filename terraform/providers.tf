@@ -23,6 +23,11 @@ terraform {
       version = "3.0.0-pre1"
     }
 
+    http = {
+      source  = "hashicorp/http"
+      version = "3.4.5"
+    }
+
     kind = {
       source  = "tehcyx/kind"
       version = "0.7.0"
@@ -64,6 +69,8 @@ provider "helm" {
     cluster_ca_certificate = local.host.type == "kind" ? kind_cluster.kind[0].cluster_ca_certificate : null
   }
 }
+
+provider "http" {}
 
 provider "kind" {}
 
