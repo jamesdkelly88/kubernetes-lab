@@ -22,7 +22,3 @@ data "akeyless_static_secret" "akeyless_id" {
 data "akeyless_static_secret" "akeyless_key" {
   path = "/k8s/config/credentials/${local.host.secret}/password"
 }
-
-data "akeyless_static_secret" "github_token" {
-  path = "/k8s/config/credentials/github"
-}

@@ -1,7 +1,7 @@
 resource "time_sleep" "wait_for_cluster" {
   depends_on = [kind_cluster.kind]
 
-  create_duration = "2m"
+  create_duration = "30s"
 }
 
 resource "kubernetes_namespace" "external-secrets" {

@@ -37,14 +37,11 @@ Kubernetes homelab
 │   │   │   ├── infra-charts-appset.yaml         # argocd applicationset selecting helm infrastructure components
 │   │   │   ├── manifests-appset.yaml            # argocd applicationset selecting manifest apps
 │   │   │   └── infra-manifests-appset.yaml      # argocd applicationset selecting manifest infrastructure components
+│   │   ├── flux.yaml                            # flux repository and kustomization defining directory to use
 │   │   └── flux
 │   │       ├── apps.yaml                        # flux definition for apps/kustomization.yaml
 │   │       ├── apps
 │   │       │   └── kustomization.yaml           # fluxcd kustomize selecting apps
-│   │       ├── flux-system                      # auto generated
-│   │       │   ├── gotk-components.yaml
-│   │       │   ├── gotk-sync.yaml
-│   │       │   └── kustomization.yaml
 │   │       ├── infrastructure.yaml              # flux definition for infrastructure/kustomization.yaml
 │   │       └── infrastructure
 │   │           └── kustomization.yaml           # fluxcd kustomize selecting infrastructure components

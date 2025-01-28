@@ -6,6 +6,7 @@
     go-task
     kind
     kubectl
+    kubernetes-helm
     talosctl
     terraform
     tflint
