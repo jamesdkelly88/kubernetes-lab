@@ -6,17 +6,7 @@
     "baseBranches": [
         "main"
     ],
-    "packageRules": [
-        {
-            "matchUpdateTypes": [
-                "major"
-            ],
-            "matchBaseBranches": [
-                "main"
-            ],
-            "enabled": false
-        }
-    ],
+    "packageRules": [],
     "kubernetes": {
         "fileMatch": [
             "apps/.+\\.yaml$",
