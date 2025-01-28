@@ -1,5 +1,5 @@
 replicaCount: 1
-ingress.enabled: true
+ingress.enabled: "true"
 # ingress.hosts:
 # - host: hello.jklocal.duckdns.org
 #   paths:
