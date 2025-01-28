@@ -16,5 +16,11 @@
             ],
             "enabled": false
         }
-    ]
+    ],
+    "kubernetes": {
+        "fileMatch": [
+            "apps/.+\\.yaml$",
+            "infrastructure/.+\\.yaml$"
+        ]
+    }
 }
