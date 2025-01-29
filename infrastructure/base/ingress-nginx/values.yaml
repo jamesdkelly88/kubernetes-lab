@@ -5,3 +5,4 @@ controller:
     default: true
   service:
     type: NodePort
+  watchIngressWithoutClass: true
