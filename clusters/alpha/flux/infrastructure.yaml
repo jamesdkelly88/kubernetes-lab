@@ -10,6 +10,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: infrastructure
+  path: ./clusters/alpha/flux/infrastructure
   prune: true
   wait: true
