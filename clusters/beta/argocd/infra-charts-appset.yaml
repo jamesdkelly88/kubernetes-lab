@@ -7,6 +7,13 @@ spec:
   generators:
   - list:
       elements:
+        - appName: cert-manager
+          branch: main
+          chart: cert-manager
+          environment: base
+          namespace: cert-manager
+          repository: https://charts.jetstack.io
+          version: 1.16.3
         - appName: external-secrets
           branch: main
           chart: external-secrets
