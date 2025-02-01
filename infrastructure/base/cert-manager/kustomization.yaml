@@ -5,3 +5,11 @@ resources:
   - namespace.yaml
   - repository.yaml
   - release.yaml
+
+configMapGenerator:
+- name: values
+  files:
+  - values.yaml
+
+configurations:
+- kustomizeconfig.yaml
