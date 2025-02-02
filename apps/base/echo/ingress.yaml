@@ -9,7 +9,7 @@ spec:
   tls:
   - hosts: 
     - change.me
-    secretName: hello-cert
+    secretName: echo-cert
   rules:
   - host: change.me
     http:

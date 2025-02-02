@@ -1,0 +1,10 @@
+groupName: change.me
+clusterIssuer:
+  email: jdk.homelab@gmail.com
+  production:
+    create: false
+  staging:
+    create: false
+token:
+  existingSecret: true
+  existingSecretName: duckdns
