@@ -21,7 +21,7 @@ spec:
           namespace: external-secrets
           repository: https://charts.external-secrets.io
           version: 0.13.0
-        - appName: cert-manager-duckdns-webhook
+        - appName: duckdns-webhook
           branch: main
           chart: cert-manager-duckdns-webhook
           environment: local
