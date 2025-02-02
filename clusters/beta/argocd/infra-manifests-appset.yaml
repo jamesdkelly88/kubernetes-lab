@@ -10,6 +10,9 @@ spec:
       - name: external-secrets-store
         environment: base
         branch: main
+      - name: duckdns-secret
+        environment: base
+        branch: main
   template:
     metadata:
       name: '{{name}}'

@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
 - ../../../../infrastructure/base/external-secrets/
 - ../../../../infrastructure/base/external-secrets-store/
+- ../../../../infrastructure/base/duckdns-secret/
 - ../../../../infrastructure/base/ingress-nginx/
