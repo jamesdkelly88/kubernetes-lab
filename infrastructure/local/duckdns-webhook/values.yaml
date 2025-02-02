@@ -2,7 +2,7 @@ groupName: jklocal.duckdns.org
 clusterIssuer:
   email: jdk.homelab@gmail.com
   production:
-    create: false
+    create: true
   staging:
     create: true
 token:
