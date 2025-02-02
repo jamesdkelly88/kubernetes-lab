@@ -6,10 +6,10 @@ metadata:
     ingress.kubernetes.io/ssl-redirect: "true"
     cert-manager.io/cluster-issuer: duckdns-letsencrypt-prod
 spec:
-  # tls:
-  # - hosts: 
-  #   - hello.local.gd
-  #   secretName: hello-cert
+  tls:
+  - hosts: 
+    - change.me
+    secretName: hello-cert
   rules:
   - host: change.me
     http:

@@ -14,10 +14,10 @@ replicas:
 
 patches:
 - patch: |-
-    # - op: replace
-    #   path: /spec/tls/0/hosts
-    #   value: 
-    #   - hello-world.dev.lan
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: 
+      - echo.jklocal.duckdns.org
     - op: replace
       path: /spec/rules/0/host
       value: echo.jklocal.duckdns.org
