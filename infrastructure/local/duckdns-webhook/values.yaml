@@ -7,7 +7,7 @@ clusterIssuer:
     create: true
 image:
   repository: jamesdkelly88/cert-manager-duckdns-webhook
-  tag: v1
+  tag: v2
   pullPolicy: Always
 token:
   existingSecretName: duckdns
