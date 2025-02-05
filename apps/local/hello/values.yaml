@@ -11,5 +11,5 @@ ingress:
         pathType: ImplementationSpecific
   tls:
   - hosts: 
-    - temp.jklocal.duckdns.org
+    - "*.jklocal.duckdns.org"
     secretName: hello-cert
