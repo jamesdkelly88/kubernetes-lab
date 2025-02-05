@@ -12,4 +12,5 @@ ingress:
   tls:
   - hosts: 
     - hello.jklocal.duckdns.org
+    - temp.jklocal.duckdns.org
     secretName: hello-cert
