@@ -1,4 +1,6 @@
 controller:
+  extraArgs:
+    default-ssl-certificate: cert-manager/duckdns-wildcard-cert
   hostPort:
     enabled: true
   ingressClassResource:

@@ -5,9 +5,9 @@ clusterIssuer:
     create: true
   staging:
     create: true
-# image:
-#   repository: jamesdkelly88/cert-manager-duckdns-webhook
-#   tag: v2
-#   pullPolicy: Always
+image:
+  repository: jamesdkelly88/cert-manager-duckdns-webhook
+  tag: v2
+  pullPolicy: Always
 token:
   existingSecretName: duckdns

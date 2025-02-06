@@ -3,7 +3,7 @@ ingress:
   enabled: "true"
   annotations:
     ingress.kubernetes.io/ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: duckdns-letsencrypt-prod
+    # cert-manager.io/cluster-issuer: duckdns-letsencrypt-prod
   hosts:
   - host: hello.jklocal.duckdns.org
     paths:
