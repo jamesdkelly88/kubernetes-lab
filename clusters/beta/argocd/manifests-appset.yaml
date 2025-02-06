@@ -7,6 +7,9 @@ spec:
   generators:
   - list:
       elements:
+      - name: argocd-ingress
+        environment: local
+        branch: main
       - name: echo
         environment: local
         branch: main
