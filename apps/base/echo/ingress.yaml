@@ -4,12 +4,10 @@ metadata:
   name: echo
   annotations:
     ingress.kubernetes.io/ssl-redirect: "true"
-    # cert-manager.io/cluster-issuer: duckdns-letsencrypt-prod
 spec:
   tls:
   - hosts: 
     - change.me
-    secretName: echo-cert
   rules:
   - host: change.me
     http:
