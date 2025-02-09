@@ -15,4 +15,3 @@
 - [x] multiple local clusters
 - [ ] API call to update DuckDNS if not set to host IP
 - [x] switch flux install to helm chart so repo write access not required
-- [ ] Set argocd to insecure only to resolve ingress redirect issue

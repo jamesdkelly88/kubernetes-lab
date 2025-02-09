@@ -4,6 +4,6 @@
 - [ ] overlay value file for flux
 - [x] deploy with argocd
 - [x] values file for argocd
-- [ ] overlay value file for argocd
+- [x] overlay value file for argocd
 - [x] same values files for both argocd and flux?
 - [ ] include argocd in alpha and flux in beta to ensure no conflicts
