@@ -6,10 +6,19 @@ resources:
 
 patches:
 - patch: |-
+    - op: add
+      path: /metadata/annotations/nginx.ingress.kubernetes.io~1force-ssl-redirect
+      value: true
+    - op: add
+      path: /metadata/annotations/nginx.ingress.kubernetes.io~1backend-protocol
+      value: HTTPS
+    - op: add
+      path: /metadata/annotations/nginx.ingress.kubernetes.io~1service-upstream
+      value: true  
     - op: replace
       path: /spec/tls/0/hosts
       value: 
-      - "argocd.jklocal.duckdns.org"
+      - argocd.jklocal.duckdns.org
     - op: replace
       path: /spec/rules/0/host
       value: argocd.jklocal.duckdns.org
