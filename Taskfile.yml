@@ -50,6 +50,15 @@ tasks:
   # upgrade
   # token for dashboard
 
+  argo-password:
+    aliases:
+      - argo
+    cmd: kubectl get secrets/argocd-initial-admin-secret -n argocd --template=\{\{.data.password\}\} | base64 -d
+    desc: Get ArgoCD default admin password
+    requires:
+      vars: [ KUBECONFIG ]
+    silent: true
+
 # Terraform
 
   init:
