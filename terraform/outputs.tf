@@ -18,6 +18,6 @@ output "endpoint" {
 #   value = nonsensitive(data.akeyless_static_secret.test.value)
 # }
 
-output "dns_test" {
-  value = join(",", data.dns_a_record_set.duckdns.addrs)
-}
+# output "dns_test" {
+#   value = join(",", data.dns_a_record_set.duckdns.addrs)
+# }

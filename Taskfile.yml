@@ -59,21 +59,25 @@ tasks:
     dir: '{{ .ROOT_DIR }}/terraform'
     env:
       TF_WORKSPACE: "{{.CLUSTER}}"
+      TF_TOKEN_app_terraform_io: "{{.TERRAFORM_TOKEN}}"
     requires:
-      vars: [ TF_TOKEN_app_terraform_io, CLUSTER ]
+      vars: [ CLUSTER, TERRAFORM_TOKEN ]
+    silent: true
 
   plan:
     cmds:
     - task: init
     - terraform fmt *.tf
     - tflint
-    - terraform plan {{.DESTROY}}-var cluster={{.CLUSTER}} -input=false -out=tfplan
+    - terraform plan {{.DESTROY}}-var cluster={{.CLUSTER}} -var akeyless_id={{.AKEYLESS_ID}} -var akeyless_key={{.AKEYLESS_KEY}} -input=false -out=tfplan
     desc: Run terraform plan for a cluster
     dir: '{{ .ROOT_DIR }}/terraform'
     env:
       TF_WORKSPACE: "{{.CLUSTER}}"
+      TF_TOKEN_app_terraform_io: "{{.TERRAFORM_TOKEN}}"
     requires:
-      vars: [ TF_TOKEN_app_terraform_io, TF_VAR_akeyless_id, TF_VAR_akeyless_key, CLUSTER ]
+      vars: [ AKEYLESS_ID, AKEYLESS_KEY, CLUSTER, TERRAFORM_TOKEN ]
+    silent: true
     vars:
       DESTROY: '{{.DESTROY | default "" }}'
 
@@ -85,8 +89,10 @@ tasks:
     dir: '{{ .ROOT_DIR }}/terraform'
     env:
       TF_WORKSPACE: "{{.CLUSTER}}"
+      TF_TOKEN_app_terraform_io: "{{.TERRAFORM_TOKEN}}"
     requires:
-      vars: [ TF_TOKEN_app_terraform_io, TF_VAR_akeyless_id, TF_VAR_akeyless_key, CLUSTER ]
+      vars: [ CLUSTER, TERRAFORM_TOKEN ]
+    silent: true
 
   destroy:
     cmds:
@@ -98,8 +104,10 @@ tasks:
     dir: '{{ .ROOT_DIR }}/terraform'
     env:
       TF_WORKSPACE: "{{.CLUSTER}}"
+      TF_TOKEN_app_terraform_io: "{{.TERRAFORM_TOKEN}}"
     requires:
-      vars: [ TF_TOKEN_app_terraform_io, TF_VAR_akeyless_id, TF_VAR_akeyless_key, CLUSTER ]
+      vars: [ CLUSTER, TERRAFORM_TOKEN ]
+    silent: true
 
   force-delete:
     cmds:
@@ -110,5 +118,7 @@ tasks:
     dir: '{{ .ROOT_DIR }}/terraform'
     env:
       TF_WORKSPACE: "{{.CLUSTER}}"
+      TF_TOKEN_app_terraform_io: "{{.TERRAFORM_TOKEN}}"
     requires:
-      vars: [ TF_TOKEN_app_terraform_io, TF_VAR_akeyless_id, TF_VAR_akeyless_key, CLUSTER ]
+      vars: [ CLUSTER, TERRAFORM_TOKEN ]
+    silent: true

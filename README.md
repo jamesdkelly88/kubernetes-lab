@@ -61,9 +61,9 @@ Kubernetes homelab
 ## .env file
 
 ```
-TF_TOKEN_app_terraform_io=
-TF_VAR_akeyless_id=
-TF_VAR_akeyless_key=
+AKEYLESS_ID=
+AKEYLESS_KEY=
+TERRAFORM_TOKEN=
 ```
 
 ## Usage
@@ -90,6 +90,11 @@ TBC
 KUBECONFIG=~/.kube/local1 kubectl get nodes
 ```
 
+```powershell
+$env:KUBECONFIG="$env:USERPROFILE/.kube/local1"
+kubectl get nodes
+```
+
 #### Port forwarding
 
 ```sh
@@ -109,12 +114,13 @@ KUBECONFIG=~/.kube/local1 kubectl port-forward deployment/[name] -n [namespace] 
 cd terraform
 # select workspace
 export TF_WORKSPACE=alpha
+export TF_TOKEN_app_terraform_io=<token>
 # initialise (with secrets)
-env $(cat ../.env | xargs) terraform init
+terraform init
 # plan (with secrets)
-env $(cat ../.env | xargs) terraform plan -var 'cluster=alpha' -out=tfplan
+terraform plan -var 'cluster=alpha' -var 'akeyless_id=<secret>' -var 'akeyless_key=<secret>' -out=tfplan
 # apply plan (with secrets)
-env $(cat ../.env | xargs) terraform apply tfplan
+terraform apply tfplan
 
 
 # plan destroy (with secrets)
