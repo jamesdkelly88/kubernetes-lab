@@ -53,3 +53,9 @@ services:
         subtitle: "Dashboard icons"
         tag: "setup"
         url: "https://github.com/walkxcode/dashboard-icons"
+  - name: "Clusters"
+    logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/kubernetes.svg"
+    items:
+    - name: "α"
+      logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/kubernetes.svg"
+      url: "#alpha"
