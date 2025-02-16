@@ -2,13 +2,12 @@ groupName: change.me
 clusterIssuer:
   email: jdk.homelab@gmail.com
   production:
-    create: false
+    create: true
   staging:
-    create: false
+    create: true
 image:
   repository: jamesdkelly88/cert-manager-duckdns-webhook
   tag: v2
   pullPolicy: Always
 token:
-  existingSecret: true
   existingSecretName: duckdns

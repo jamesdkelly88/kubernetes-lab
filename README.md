@@ -127,3 +127,21 @@ terraform apply tfplan
 env $(cat ../.env | xargs) terraform plan -var 'cluster=alpha' -out=tfplan -destroy
 ```
 
+## Adding to clusters
+
+### ArgoCD
+
+- helm charts only require a values file - the chart definition is handled by applicationset
+- update spec.generators.list with new definiton
+  - add application manifests to `manifests-appset.yaml`
+  - add application charts to `charts-appset.yaml`
+  - add infrastructure manifests to `infra-manifests-appset.yaml`
+  - add infrastructure charts to `infra-charts-appset.yaml`
+
+### FluxCD
+
+- helm charts must be defined as flux resources
+- update kustomization.yaml with relative path to manifests
+  - add applications to `flux/apps/kustomization.yaml`
+  - add infrastructure to `flux/infrastructure/kustomization.yaml`
+  - add config dependencies to `flux/config/kustomization.yaml`
