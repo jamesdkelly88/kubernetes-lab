@@ -13,8 +13,8 @@ spec:
         name: cert-manager
         namespace: cert-manager
       interval: 12h
-      valuesFrom:
-      - kind: ConfigMap
-        name: values
+  valuesFrom:
+    - kind: ConfigMap
+      name: values
     
 
