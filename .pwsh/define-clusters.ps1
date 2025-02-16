@@ -72,6 +72,74 @@ foreach($c in $config.clusters.keys)
 
   # argocd files
 
+  $charts = [ordered]@{
+    apiVersion = "argoproj.io/v1alpha1"
+    kind = "ApplicationSet"
+    metadata = [ordered]@{
+      name = "charts"
+      namespace = "argocd"
+    }
+    spec = [ordered]@{
+      generators = @(
+        @{
+          list = @{
+            elements = @()
+          }
+        }
+      )
+      template = [ordered]@{
+        metadata = [ordered]@{
+          name = "{{appName}}"
+          annotations = @{
+            "argocd.argoproj.io/manifest-generate-paths" = ".;.."
+          }
+        }
+        project = "default"
+        sources = @(
+          [ordered]@{
+            repoURL = "{{repository}}"
+            chart = "{{chart}}"
+            targetRevision = "{{version}}"
+            helm = [ordered]@{
+              valueFiles = @(
+                "`$self/apps/{{environment}}/{{appName}}/values.yaml"
+              )
+            }
+          },
+          [ordered]@{
+            repoURL = "https://github.com/jamesdkelly88/kubernetes-lab.git"
+            targetRevision = "{{ branch }}"
+            ref = "self"
+          }
+        )
+        destination = [ordered]@{
+          name = "in-cluster"
+          namespace = "{{namespace}}"
+        }
+        syncPolicy = [ordered]@{
+          automated = [ordered]@{
+            prune = $true
+            selfHeal = $true
+          }
+          syncOptions = @(
+            "CreateNamespace=true"
+          )
+        }
+      }
+    }
+  }
+  # $manifests = [ordered]@{
+
+  # }
+  # $infra_charts = [ordered]@{
+
+  # }
+  # $infra_manifests = [ordered]@{
+
+  # }
+
+
+  $charts | ConvertTo-Yaml | Out-File -Path (Join-Path -Path $folder -ChildPath "argocd/charts-appset.yaml")
 
 
   # flux files
