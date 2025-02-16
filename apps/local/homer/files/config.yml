@@ -45,7 +45,7 @@ services:
     icon: "fas fa-cloud"
     items:
       - name: "Github"
-        icon: "fa-solid fa-github"
+        logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/github.svg"
         subtitle: "Cluster repository"
         url: "https://github.com/jamesdkelly88/kubernetes-lab"
       - name: "Dashboard icons"
