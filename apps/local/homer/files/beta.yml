@@ -56,4 +56,4 @@ services:
       - name: "Homer"
         logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/homer.svg"
         subtitle: "This dashboard"
-        url: "https://homer.jklocal.duckdns.org:8443"
+        url: "https://homer.jklocal.duckdns.org:8443#beta"
