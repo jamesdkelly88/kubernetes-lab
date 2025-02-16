@@ -4,14 +4,15 @@ metadata:
   name: apps
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: infrastructure
   interval: 1h
   retryInterval: 1m
-  timeout: 5m 
+  timeout: 5m
   sourceRef:
     kind: GitRepository
     name: flux-system
   path: ./clusters/alpha/flux/apps
   prune: true
   wait: true
+  dependsOn:
+    name: infrastructure
+

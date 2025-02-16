@@ -1,0 +1,17 @@
+clusters:
+  alpha:
+    branch: main
+    environment: local
+    apps:
+    - echo
+    - hello
+    - homer
+    config:
+    - cert-manager
+    - external-secrets
+    infrastructure:
+    - cert-manager-duckdns
+    - duckdns-secret
+    - duckdns-wildcard-cert
+    - external-secrets-store
+    - ingress-nginx

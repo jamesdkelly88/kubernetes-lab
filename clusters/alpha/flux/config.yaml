@@ -13,3 +13,4 @@ spec:
   path: ./clusters/alpha/flux/config
   prune: true
   wait: true
+
