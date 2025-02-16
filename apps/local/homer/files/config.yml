@@ -32,30 +32,18 @@ colors:
     card-shadow: rgba(0, 0, 0, 0.4)
     link: "#3273dc"
     link-hover: "#ffdd57"
+defaults:
+  layout: list
 links:
-  - name: "α"
-    icon: "fa-solid fa-home"
-    url: "#alpha"
-  - name: "β"
-    icon: "fa-solid fa-home"
-    url: "#beta"
-
+  - name: "Github"
+    icon: "fab fa-github"
+    url: "https://github.com/jamesdkelly88/kubernetes-lab"
+    target: "_blank"
 services:
-  - name: "Applications"
-    icon: "fas fa-cloud"
-    items:
-      - name: "Github"
-        logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/github.svg"
-        subtitle: "Cluster repository"
-        url: "https://github.com/jamesdkelly88/kubernetes-lab"
-      - name: "Dashboard icons"
-        icon: "fa-solid fa-icons"
-        subtitle: "Dashboard icons"
-        tag: "setup"
-        url: "https://github.com/walkxcode/dashboard-icons"
-  - name: "Clusters"
-    logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/kubernetes.svg"
-    items:
+  - items:
     - name: "α"
       logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/kubernetes.svg"
       url: "#alpha"
+    - name: "β"
+      logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/kubernetes.svg"
+      url: "#beta"
