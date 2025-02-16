@@ -1,3 +1,0 @@
-- [ ] include for Flux
-- [x] Fix TXT record deletion script and publish custom image
-- [ ] try wildcard certificate at cluster level

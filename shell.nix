@@ -5,6 +5,7 @@
     gh
     go-task
     kind
+    kube-linter
     kubectl
     kubernetes-helm
     talosctl

@@ -59,6 +59,11 @@ tasks:
       vars: [ KUBECONFIG ]
     silent: true
 
+  lint:
+    cmd: kube-linter lint .
+    desc: Lint kubernetes manifests
+    silent: true
+
 # Terraform
 
   init:
