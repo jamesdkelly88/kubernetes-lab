@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
 - ../../../../apps/local/echo/
 - ../../../../apps/local/hello/
+- ../../../../apps/local/homer/

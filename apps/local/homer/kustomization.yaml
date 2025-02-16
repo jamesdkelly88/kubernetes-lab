@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../base/homer/
+
+images:
+- name: b4bz/homer
+  newTag: "v25.02.1"
+
+replicas:
+- name: homer
+  count: 1
+
+patches:
+- patch: |-
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: 
+      - "*.jklocal.duckdns.org"
+    - op: replace
+      path: /spec/rules/0/host
+      value: homer.jklocal.duckdns.org
+  target:
+    group: networking.k8s.io
+    version: v1
+    kind: Ingress
+    name: homer
