@@ -13,6 +13,9 @@ spec:
       - name: echo
         environment: local
         branch: main
+      - name: homer
+        environment: local
+        branch: main
   template:
     metadata:
       name: '{{name}}'

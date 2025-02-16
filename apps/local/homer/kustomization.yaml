@@ -4,6 +4,15 @@ kind: Kustomization
 resources:
 - ../../base/homer/
 
+configMapGenerator:
+- name: config
+  namespace: homer
+  behavior: replace
+  files:
+  - files/config.yml
+  - files/alpha.yml
+  - files/beta.yml
+
 images:
 - name: b4bz/homer
   newTag: "v25.02.1"
