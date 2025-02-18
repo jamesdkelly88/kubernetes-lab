@@ -4,3 +4,5 @@ namespace: kubernetes-dashboard
 
 resources:
   - ingress.yaml
+  - serviceaccount.yaml
+  - clusterrolebinding.yaml
