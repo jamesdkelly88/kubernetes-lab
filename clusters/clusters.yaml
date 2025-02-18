@@ -23,6 +23,7 @@ clusters:
     - echo
     - hello
     - homer
+    - kubernetes-dashboard
     config:
     - cert-manager
     - external-secrets
