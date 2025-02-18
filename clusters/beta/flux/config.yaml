@@ -10,7 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./clusters/alpha/flux/config
+  path: ./clusters/beta/flux/config
   prune: true
   wait: true
 

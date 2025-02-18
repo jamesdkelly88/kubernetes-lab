@@ -4,8 +4,6 @@ metadata:
   name: infrastructure
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: config
   interval: 1h
   retryInterval: 1m
   timeout: 5m
@@ -15,3 +13,6 @@ spec:
   path: ./clusters/alpha/flux/infrastructure
   prune: true
   wait: true
+  dependsOn:
+    name: config
+

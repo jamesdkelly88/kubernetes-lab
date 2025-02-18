@@ -8,6 +8,7 @@
     kube-linter
     kubectl
     kubernetes-helm
+    powershell
     talosctl
     terraform
     tflint

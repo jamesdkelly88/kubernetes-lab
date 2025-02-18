@@ -26,7 +26,7 @@ spec:
       source:
         repoURL: https://github.com/jamesdkelly88/kubernetes-lab.git
         targetRevision: '{{ branch }}'
-        path: 'apps/{{ environment }}/{{ name }}'
+        path: apps/{{ environment }}/{{ name }}
       destination:
         server: https://kubernetes.default.svc
       syncPolicy:
@@ -35,3 +35,4 @@ spec:
           selfHeal: true
         syncOptions:
         - ApplyOutOfSyncOnly=true
+

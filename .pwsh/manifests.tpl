@@ -1,21 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: infra-manifests
+  name: manifests
   namespace: argocd
 spec:
   generators:
   - list:
-      elements:
-      - name: external-secrets-store
-        environment: base
-        branch: main
-      - name: duckdns-secret
-        environment: base
-        branch: main
-      - name: duckdns-wildcard-cert
-        environment: local
-        branch: main
+      elements: []
   template:
     metadata:
       name: '{{name}}'
@@ -26,7 +17,7 @@ spec:
       source:
         repoURL: https://github.com/jamesdkelly88/kubernetes-lab.git
         targetRevision: '{{ branch }}'
-        path: infrastructure/{{ environment }}/{{ name }}
+        path: 'apps/{{ environment }}/{{ name }}'
       destination:
         server: https://kubernetes.default.svc
       syncPolicy:
@@ -35,4 +26,3 @@ spec:
           selfHeal: true
         syncOptions:
         - ApplyOutOfSyncOnly=true
-

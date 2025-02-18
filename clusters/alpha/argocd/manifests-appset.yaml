@@ -1,19 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: infra-manifests
+  name: manifests
   namespace: argocd
 spec:
   generators:
   - list:
       elements:
-      - name: external-secrets-store
-        environment: base
+      - name: echo
+        environment: local
         branch: main
-      - name: duckdns-secret
-        environment: base
-        branch: main
-      - name: duckdns-wildcard-cert
+      - name: homer
         environment: local
         branch: main
   template:
@@ -26,7 +23,7 @@ spec:
       source:
         repoURL: https://github.com/jamesdkelly88/kubernetes-lab.git
         targetRevision: '{{ branch }}'
-        path: infrastructure/{{ environment }}/{{ name }}
+        path: apps/{{ environment }}/{{ name }}
       destination:
         server: https://kubernetes.default.svc
       syncPolicy:
