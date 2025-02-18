@@ -5,5 +5,5 @@ resources:
 - ../../../../apps/local/echo/
 - ../../../../apps/local/hello/
 - ../../../../apps/local/homer/
-- ../../../../apps/base/kubernetes-dashboard/
+- ../../../../apps/local/kubernetes-dashboard/
 
