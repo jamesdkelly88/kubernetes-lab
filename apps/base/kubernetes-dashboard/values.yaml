@@ -1,2 +1,5 @@
+app:
+  ingress:
+    enabled: false
 kong:
-  enabled: false
+  enabled: true
