@@ -10,8 +10,25 @@ clusters:
     - cert-manager
     - external-secrets
     infrastructure:
+    - external-secrets-store
     - cert-manager-duckdns
     - duckdns-secret
     - duckdns-wildcard-cert
+    - ingress-nginx
+  beta:
+    branch: main
+    environment: local
+    apps:
+    - argocd-ingress
+    - echo
+    - hello
+    - homer
+    config:
+    - cert-manager
+    - external-secrets
+    infrastructure:
     - external-secrets-store
+    - cert-manager-duckdns
+    - duckdns-secret
+    - duckdns-wildcard-cert
     - ingress-nginx

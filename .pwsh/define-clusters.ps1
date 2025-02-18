@@ -3,7 +3,7 @@ $ErrorActionPreference = "Stop"
 # Install-Module -Name powershell-yaml -Force -Scope CurrentUser
 Import-Module -Name powershell-yaml
 
-$repoRoot = ".."
+$repoRoot = "$PSScriptRoot/.."
 
 $clustersFolder = Join-Path -Path $repoRoot -ChildPath "clusters"
 
@@ -72,74 +72,83 @@ foreach($c in $config.clusters.keys)
 
   # argocd files
 
-  $charts = [ordered]@{
-    apiVersion = "argoproj.io/v1alpha1"
-    kind = "ApplicationSet"
-    metadata = [ordered]@{
-      name = "charts"
-      namespace = "argocd"
+  $charts = Get-Content -Path "$PSScriptRoot/charts.tpl" | ConvertFrom-Yaml -Ordered
+  $manifests = Get-Content -Path "$PSScriptRoot/manifests.tpl" | ConvertFrom-Yaml -Ordered
+  $infra_charts = Get-Content -Path "$PSScriptRoot/charts.tpl" | ConvertFrom-Yaml -Ordered
+  $infra_charts.metadata.name = "infra-charts"
+  $infra_charts.spec.template.spec.sources[0].helm.valueFiles[0] = '$self/infrastructure/{{environment}}/{{appName}}/values.yaml'
+  $infra_manifests = Get-Content -Path "$PSScriptRoot/manifests.tpl" | ConvertFrom-Yaml -Ordered
+  $infra_manifests.metadata.name = "infra-manifests"
+  $infra_manifests.spec.template.spec.source.path = 'infrastructure/{{ environment }}/{{ name }}'
+
+  foreach($a in $paths.apps)
+  {
+    $name = $a.split("/")[2]
+    $environment = $a.split("/")[1]
+    $gci = Get-ChildItem -path (Join-Path -Path $repoRoot -ChildPath "apps/base/$name")
+    if($gci.name -contains "release.yaml")
+    {
+      # Chart
+      $release = Get-Content (Join-Path -Path $repoRoot -ChildPath "apps/base/$name/release.yaml") | ConvertFrom-Yaml
+      $repository = Get-Content (Join-Path -Path $repoRoot -ChildPath "apps/base/$name/repository.yaml") | ConvertFrom-Yaml
+
+      $charts.spec.generators[0].list.elements += [ordered]@{
+        appName = $name
+        branch = $cluster.branch
+        chart = $release.spec.chart.spec.chart
+        environment = $environment
+        namespace = $release.spec.chart.spec.sourceRef.namespace
+        repository = $repository.spec.url
+        version = $release.spec.chart.spec.version
+      }
     }
-    spec = [ordered]@{
-      generators = @(
-        @{
-          list = @{
-            elements = @()
-          }
-        }
-      )
-      template = [ordered]@{
-        metadata = [ordered]@{
-          name = "{{appName}}"
-          annotations = @{
-            "argocd.argoproj.io/manifest-generate-paths" = ".;.."
-          }
-        }
-        project = "default"
-        sources = @(
-          [ordered]@{
-            repoURL = "{{repository}}"
-            chart = "{{chart}}"
-            targetRevision = "{{version}}"
-            helm = [ordered]@{
-              valueFiles = @(
-                "`$self/apps/{{environment}}/{{appName}}/values.yaml"
-              )
-            }
-          },
-          [ordered]@{
-            repoURL = "https://github.com/jamesdkelly88/kubernetes-lab.git"
-            targetRevision = "{{ branch }}"
-            ref = "self"
-          }
-        )
-        destination = [ordered]@{
-          name = "in-cluster"
-          namespace = "{{namespace}}"
-        }
-        syncPolicy = [ordered]@{
-          automated = [ordered]@{
-            prune = $true
-            selfHeal = $true
-          }
-          syncOptions = @(
-            "CreateNamespace=true"
-          )
-        }
+    else 
+    {
+      # Manifest
+      $manifests.spec.generators[0].list.elements += [ordered]@{
+        name = $name
+        environment = $environment
+        branch = $cluster.branch
       }
     }
   }
-  # $manifests = [ordered]@{
 
-  # }
-  # $infra_charts = [ordered]@{
+  foreach($i in $paths.config + $paths.infrastructure)
+  {
+    $name = $i.split("/")[2]
+    $environment = $i.split("/")[1]
+    $gci = Get-ChildItem -path (Join-Path -Path $repoRoot -ChildPath "infrastructure/base/$name")
+    if($gci.name -contains "release.yaml")
+    {
+      # Chart
+      $release = Get-Content (Join-Path -Path $repoRoot -ChildPath "infrastructure/base/$name/release.yaml") | ConvertFrom-Yaml
+      $repository = Get-Content (Join-Path -Path $repoRoot -ChildPath "infrastructure/base/$name/repository.yaml") | ConvertFrom-Yaml
 
-  # }
-  # $infra_manifests = [ordered]@{
-
-  # }
-
+      $infra_charts.spec.generators[0].list.elements += [ordered]@{
+        appName = $name
+        branch = $cluster.branch
+        chart = $release.spec.chart.spec.chart
+        environment = $environment
+        namespace = $release.spec.chart.spec.sourceRef.namespace
+        repository = $repository.spec.url
+        version = $release.spec.chart.spec.version
+      }
+    }
+    else 
+    {
+      # Manifest
+      $infra_manifests.spec.generators[0].list.elements += [ordered]@{
+        name = $name
+        environment = $environment
+        branch = $cluster.branch
+      }
+    }
+  }
 
   $charts | ConvertTo-Yaml | Out-File -Path (Join-Path -Path $folder -ChildPath "argocd/charts-appset.yaml")
+  $manifests | ConvertTo-Yaml | Out-File -Path (Join-Path -Path $folder -ChildPath "argocd/manifests-appset.yaml")
+  $infra_charts | ConvertTo-Yaml | Out-File -Path (Join-Path -Path $folder -ChildPath "argocd/infra-charts-appset.yaml")
+  $infra_manifests | ConvertTo-Yaml | Out-File -Path (Join-Path -Path $folder -ChildPath "argocd/infra-manifests-appset.yaml")
 
 
   # flux files
