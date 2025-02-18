@@ -59,6 +59,15 @@ tasks:
       vars: [ KUBECONFIG ]
     silent: true
 
+  dashboard-token:
+    aliases:
+      - dashboard
+    cmd: kubectl create token admin-user -n kubernetes-dashboard
+    desc: Get login token for Kubernetes Dashboard
+    requires:
+      vars: [ KUBECONFIG ]
+    silent: true
+
   lint:
     cmd: kube-linter lint .
     desc: Lint kubernetes manifests
