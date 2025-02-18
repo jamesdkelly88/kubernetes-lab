@@ -17,7 +17,7 @@ spec:
       - appName: kubernetes-dashboard
         branch: main
         chart: kubernetes-dashboard
-        environment: local
+        environment: base
         namespace: kubernetes-dashboard
         repository: https://kubernetes.github.io/dashboard/
         version: 7.10.4
