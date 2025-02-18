@@ -14,5 +14,5 @@ spec:
   prune: true
   wait: true
   dependsOn:
-    name: config
+  - name: config
 

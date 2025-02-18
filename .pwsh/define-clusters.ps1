@@ -227,8 +227,8 @@ foreach($c in $config.clusters.keys)
     } 
 
     switch($xx){
-      "apps" { $oxx.spec.Add("dependsOn",@{name = "infrastructure"}) }
-      "infrastructure" { $oxx.spec.Add("dependsOn",@{name = "config"}) }
+      "apps" { $oxx.spec.Add("dependsOn",@(@{name = "infrastructure"})) }
+      "infrastructure" { $oxx.spec.Add("dependsOn",@(@{name = "config"})) }
     }
     
     $oxx | ConvertTo-Yaml |  Out-File -Path (Join-Path -Path $folder -ChildPath "flux/$xx.yaml")
