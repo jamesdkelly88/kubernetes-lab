@@ -4,6 +4,7 @@ clusters:
     environment: local
     apps:
     - echo
+    - flux-capacitor
     - hello
     - homer
     config:

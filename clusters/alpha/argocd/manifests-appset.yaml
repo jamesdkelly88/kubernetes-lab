@@ -10,6 +10,9 @@ spec:
       - name: echo
         environment: local
         branch: main
+      - name: flux-capacitor
+        environment: base
+        branch: main
       - name: homer
         environment: local
         branch: main
