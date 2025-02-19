@@ -4,3 +4,5 @@ namespace: flux-system
 
 resources:
 - repository.yaml
+- networkpolicy.yaml
+- ingress.yaml

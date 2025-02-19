@@ -11,7 +11,7 @@ spec:
         environment: local
         branch: main
       - name: flux-capacitor
-        environment: base
+        environment: local
         branch: main
       - name: homer
         environment: local
