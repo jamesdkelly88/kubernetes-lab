@@ -120,6 +120,7 @@ tasks:
   destroy:
     cmds:
     - task: init
+    - terraform state rm kubernetes_namespace.external-secrets
     - task: plan
       vars: { DESTROY: '-destroy ' }
     - terraform apply tfplan

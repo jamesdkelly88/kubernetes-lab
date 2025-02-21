@@ -57,3 +57,7 @@ services:
         logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/homer.svg"
         subtitle: "This dashboard"
         url: "https://homer.jklocal.duckdns.org:8443#beta"
+      - name: "Kubernetes Dashboard"
+        logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/kubernetes.svg"
+        subtitle: "Official Kubernetes dashboard"
+        url: "https://dashboard.jklocal.duckdns.org:8443"

@@ -16,6 +16,9 @@ spec:
       - name: homer
         environment: local
         branch: main
+      - name: kubernetes-dashboard-ingress
+        environment: local
+        branch: main
   template:
     metadata:
       name: '{{name}}'

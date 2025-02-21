@@ -14,6 +14,13 @@ spec:
         namespace: hello
         repository: https://cloudecho.github.io/charts/
         version: 0.1.2
+      - appName: kubernetes-dashboard
+        branch: main
+        chart: kubernetes-dashboard
+        environment: base
+        namespace: kubernetes-dashboard
+        repository: https://kubernetes.github.io/dashboard/
+        version: 7.10.4
   template:
     metadata:
       name: '{{appName}}'
