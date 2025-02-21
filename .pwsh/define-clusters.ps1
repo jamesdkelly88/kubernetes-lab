@@ -60,7 +60,7 @@ foreach($c in $config.clusters.keys)
     New-Item -ItemType Directory -Path $folder | Out-Null
   }
 
-  foreach($sf in @("argocd","flux","flux/apps","flux/config","flux/infrastructure"))
+  foreach($sf in @("argocd","flux","flux/apps","flux/cluster","flux/config","flux/infrastructure"))
   {
     $subfolder = Join-Path -Path $folder -ChildPath $sf
     if(-not (Test-path $subfolder))
@@ -153,48 +153,38 @@ foreach($c in $config.clusters.keys)
 
   # flux files
 
-  ## flux.yaml
+  ## cluster
 
-  [String]::Join("---`n",@(
-    (
-      [ordered]@{
-        apiVersion = "source.toolkit.fluxcd.io/v1"
-        kind = "GitRepository"
-        metadata = [ordered]@{
-          name = "flux-system"
-          namespace = "flux-system"
-        }
-        spec = [ordered]@{
-          interval = "1m0s"
-          ref = @{
-            branch = $cluster.branch
-          }
-          url = "https://github.com/jamesdkelly88/kubernetes-lab"
-        }
-      } | ConvertTo-Yaml
-    ),
-    (
-      [ordered]@{
-        apiVersion = "kustomize.toolkit.fluxcd.io/v1"
-        kind = "Kustomization"
-        metadata = [ordered]@{
-          name = "flux-system"
-          namespace = "flux-system"
-        }
-        spec = [ordered]@{
-          interval = "10m0s"
-          path = "./clusters/$c/flux"
-          prune = $true
-          sourceRef = [ordered]@{
-            kind = "GitRepository"
-            name = "flux-system"
-          }
-        }
-      } | ConvertTo-Yaml
+  ### kustomization.yaml
+  [ordered]@{
+    apiVersion = "kustomize.config.k8s.io/v1beta1"
+    kind = "Kustomization"
+    namespace = "flux-system"
+    resources = @(
+      "apps.yaml",
+      "config.yaml",
+      "gitrepository.yaml",
+      "infrastructure.yaml"
     )
-  )) | Out-File -Path (Join-Path -Path $folder -ChildPath "flux.yaml")
+  } | ConvertTo-Yaml |  Out-File -Path (Join-Path -Path $folder -ChildPath "flux/cluster/kustomization.yaml")
 
-  
+  ### gitrepository.yaml
+
+  [ordered]@{
+    apiVersion = "source.toolkit.fluxcd.io/v1"
+    kind = "GitRepository"
+    metadata = [ordered]@{
+      name = "flux-system"
+    }
+    spec = [ordered]@{
+      interval = "1m0s"
+      ref = @{
+        branch = $cluster.branch
+      }
+      url = "https://github.com/jamesdkelly88/kubernetes-lab"
+    }
+  } | ConvertTo-Yaml | Out-File -Path (Join-Path -Path $folder -ChildPath "flux/cluster/gitrepository.yaml")
+
   foreach($xx in @("apps","config","infrastructure"))
   {
     ## xx/kustomization.yaml
@@ -204,13 +194,12 @@ foreach($c in $config.clusters.keys)
       resources = $paths.$xx.foreach{ "../../../../$_/" }
     } | ConvertTo-Yaml |  Out-File -Path (Join-Path -Path $folder -ChildPath "flux/$xx/kustomization.yaml")
 
-    ## xx.yaml
+    ### xx.yaml
     $oxx = [ordered]@{
       apiVersion = "kustomize.toolkit.fluxcd.io/v1"
       kind = "Kustomization"
       metadata = [ordered]@{
         name = $xx
-        namespace = "flux-system"
       }
       spec = [ordered]@{
         interval = "1h"
@@ -231,7 +220,7 @@ foreach($c in $config.clusters.keys)
       "infrastructure" { $oxx.spec.Add("dependsOn",@(@{name = "config"})) }
     }
     
-    $oxx | ConvertTo-Yaml |  Out-File -Path (Join-Path -Path $folder -ChildPath "flux/$xx.yaml")
+    $oxx | ConvertTo-Yaml |  Out-File -Path (Join-Path -Path $folder -ChildPath "flux/cluster/$xx.yaml")
   }
   
 }

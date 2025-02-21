@@ -19,12 +19,13 @@ resource "time_sleep" "wait_for_fluxcd" {
   create_duration = "2m"
 }
 
-data "kubectl_file_documents" "flux_setup" {
-  content = local.cluster.fluxcd == true ? file("../clusters/${var.cluster}/flux.yaml") : ""
+data "kustomization" "flux_setup" {
+  path = "../clusters/${var.cluster}/flux/cluster"
 }
 
-resource "kubectl_manifest" "flux_setup" {
+resource "kustomization_resource" "flux_setup" {
   depends_on = [time_sleep.wait_for_fluxcd]
-  for_each   = data.kubectl_file_documents.flux_setup.manifests
-  yaml_body  = each.value
+
+  for_each = data.kustomization.flux_setup.ids
+  manifest = data.kustomization.flux_setup.manifests[each.value]
 }

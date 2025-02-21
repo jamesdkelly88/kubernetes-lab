@@ -2,7 +2,6 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: infrastructure
-  namespace: flux-system
 spec:
   interval: 1h
   retryInterval: 1m
@@ -10,7 +9,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./clusters/alpha/flux/infrastructure
+  path: ./clusters/beta/flux/infrastructure
   prune: true
   wait: true
   dependsOn:

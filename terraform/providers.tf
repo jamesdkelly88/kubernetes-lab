@@ -43,6 +43,11 @@ terraform {
       version = "2.35.1"
     }
 
+    kustomization = {
+      source  = "kbst/kustomization"
+      version = "0.9.6"
+    }
+
     time = {
       source  = "hashicorp/time"
       version = "0.12.1"
@@ -88,6 +93,10 @@ provider "kubernetes" {
   client_certificate     = local.host.type == "kind" ? kind_cluster.kind[0].client_certificate : null
   client_key             = local.host.type == "kind" ? kind_cluster.kind[0].client_key : null
   cluster_ca_certificate = local.host.type == "kind" ? kind_cluster.kind[0].cluster_ca_certificate : null
+}
+
+provider "kustomization" {
+  kubeconfig_raw = local.host.type == "kind" ? kind_cluster.kind[0].kubeconfig : null
 }
 
 provider "time" {}
