@@ -1,0 +1,12 @@
+ingress:
+  enabled: true
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "true"
+  hosts: change.me
+  tls:
+  - hosts: 
+    - change.me
+kyverno-plugin:
+  enabled: true
+ui:
+  enabled: true

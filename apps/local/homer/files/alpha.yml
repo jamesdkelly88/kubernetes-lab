@@ -65,3 +65,7 @@ services:
         logo: "https://raw.githubusercontent.com/kubetail-org/kubetail/refs/heads/main/dashboard-ui/public/favicon.svg"
         subtitle: "Kubernetes logging dashboard"
         url: "https://kubetail.jklocal.duckdns.org"
+      - name: "Kyverno"
+        logo: "https://raw.githubusercontent.com/cncf/artwork/refs/heads/main/projects/kyverno/icon/color/kyverno-icon-color.svg"
+        subtitle: "Policy engine and dashboard"
+        url: "https://kyverno.jklocal.duckdns.org"
