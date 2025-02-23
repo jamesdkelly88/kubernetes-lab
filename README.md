@@ -37,14 +37,19 @@ Kubernetes homelab
 │   │   │   ├── infra-charts-appset.yaml         # argocd applicationset selecting helm infrastructure components
 │   │   │   ├── manifests-appset.yaml            # argocd applicationset selecting manifest apps
 │   │   │   └── infra-manifests-appset.yaml      # argocd applicationset selecting manifest infrastructure components
-│   │   ├── flux.yaml                            # flux repository and kustomization defining directory to use
 │   │   └── flux
-│   │       ├── apps.yaml                        # flux definition for apps/kustomization.yaml
 │   │       ├── apps
-│   │       │   └── kustomization.yaml           # fluxcd kustomize selecting apps
-│   │       ├── infrastructure.yaml              # flux definition for infrastructure/kustomization.yaml
+│   │       │   └── kustomization.yaml           # list of apps folders to apply
+│   │       ├── cluster
+│   │       │   ├── apps.yaml                    # fluxcd kustomize selecting apps (third phase)
+│   │       │   ├── config.yaml                  # fluxcd kustomize selecting config (first phase)
+│   │       │   ├── gitrepository.yaml           # gitrepository definition for fluxcd to use this repository
+│   │       │   ├── infrastructure.yaml          # fluxcd kustomize selecting infrastructure (second phase)
+│   │       │   └── kustomization.yaml           # kustomize defining fluxcd resources
+│   │       ├── config
+│   │       │   └── kustomization.yaml           # list of infrastructure folders to apply first
 │   │       └── infrastructure
-│   │           └── kustomization.yaml           # fluxcd kustomize selecting infrastructure components
+│   │           └── kustomization.yaml           # list of infrastructure folders to apply second
 │   └── beta
 ├── terraform
 │   ├── locals.tf                                # host and cluster configuration
@@ -80,7 +85,13 @@ TERRAFORM_TOKEN=
 
 TBC
 
-## DuckDNS
+### Cert-Manager
+
+### Force-renew a certificate
+
+`cmctl renew <cert-name> -n <cert-namespace>`
+
+### DuckDNS
 
 TBC
 

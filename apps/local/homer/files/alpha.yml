@@ -61,3 +61,7 @@ services:
         logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/kubernetes.svg"
         subtitle: "Official Kubernetes dashboard"
         url: "https://dashboard.jklocal.duckdns.org"
+      - name: "Kubetail"
+        logo: "https://raw.githubusercontent.com/kubetail-org/kubetail/refs/heads/main/dashboard-ui/public/favicon.svg"
+        subtitle: "Kubernetes logging dashboard"
+        url: "https://kubetail.jklocal.duckdns.org"

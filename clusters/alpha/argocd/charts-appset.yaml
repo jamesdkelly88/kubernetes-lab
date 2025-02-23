@@ -21,6 +21,13 @@ spec:
         namespace: kubernetes-dashboard
         repository: https://kubernetes.github.io/dashboard/
         version: 7.10.4
+      - appName: kubetail
+        branch: main
+        chart: kubetail
+        environment: base
+        namespace: kubetail
+        repository: https://kubetail-org.github.io/helm-charts/
+        version: 0.3.0
   template:
     metadata:
       name: '{{appName}}'

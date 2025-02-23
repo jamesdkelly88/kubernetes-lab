@@ -1,0 +1,7 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: kubetail
+spec:
+  interval: 24h
+  url: https://kubetail-org.github.io/helm-charts/

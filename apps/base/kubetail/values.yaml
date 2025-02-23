@@ -1,0 +1,15 @@
+kubetail:
+  dashboard:
+    ingress:
+      annotations:
+        ingress.kubernetes.io/ssl-redirect: "true"
+      enabled: true
+      rules:
+      - host: kubetail.jklocal.duckdns.org
+        http:
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+      tls:
+      - hosts: 
+        - "*.jklocal.duckdns.org"

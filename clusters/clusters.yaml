@@ -9,6 +9,7 @@ clusters:
     - homer
     - kubernetes-dashboard
     - kubernetes-dashboard-ingress
+    - kubetail
     config:
     - external-secrets
     infrastructure:
