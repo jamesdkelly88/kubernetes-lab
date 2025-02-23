@@ -12,6 +12,7 @@ clusters:
     - kubetail
     config:
     - external-secrets
+    - kyverno
     infrastructure:
     - external-secrets-store
     - duckdns-wildcard-cert-ext

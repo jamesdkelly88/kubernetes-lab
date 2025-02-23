@@ -27,7 +27,7 @@ spec:
         environment: base
         namespace: kubetail
         repository: https://kubetail-org.github.io/helm-charts/
-        version: 0.3.0
+        version: 0.9.6
   template:
     metadata:
       name: '{{appName}}'
