@@ -24,7 +24,7 @@ spec:
       - appName: kubetail
         branch: main
         chart: kubetail
-        environment: base
+        environment: local
         namespace: kubetail
         repository: https://kubetail-org.github.io/helm-charts/
         version: 0.9.6
