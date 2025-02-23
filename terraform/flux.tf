@@ -26,6 +26,6 @@ data "kustomization" "flux_setup" {
 resource "kustomization_resource" "flux_setup" {
   depends_on = [time_sleep.wait_for_fluxcd]
 
-  for_each = data.kustomization.flux_setup.ids
+  for_each = local.cluster.fluxcd == true ? data.kustomization.flux_setup.ids : []
   manifest = data.kustomization.flux_setup.manifests[each.value]
 }
