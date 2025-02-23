@@ -2,8 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - ../../../../infrastructure/base/external-secrets-store/
-- ../../../../infrastructure/local/cert-manager-duckdns/
-- ../../../../infrastructure/base/duckdns-secret/
-- ../../../../infrastructure/local/duckdns-wildcard-cert/
 - ../../../../infrastructure/base/ingress-nginx/
 

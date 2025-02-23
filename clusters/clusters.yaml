@@ -10,13 +10,10 @@ clusters:
     - kubernetes-dashboard
     - kubernetes-dashboard-ingress
     config:
-    - cert-manager
     - external-secrets
     infrastructure:
     - external-secrets-store
-    - cert-manager-duckdns
-    - duckdns-secret
-    - duckdns-wildcard-cert
+    - duckdns-wildcard-cert-ext
     - ingress-nginx
   beta:
     branch: main
@@ -35,5 +32,5 @@ clusters:
     - external-secrets-store
     - cert-manager-duckdns
     - duckdns-secret
-    - duckdns-wildcard-cert
+    - duckdns-wildcard-cert-cm
     - ingress-nginx

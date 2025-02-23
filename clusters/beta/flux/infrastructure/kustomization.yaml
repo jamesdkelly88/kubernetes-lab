@@ -4,6 +4,6 @@ resources:
 - ../../../../infrastructure/base/external-secrets-store/
 - ../../../../infrastructure/local/cert-manager-duckdns/
 - ../../../../infrastructure/base/duckdns-secret/
-- ../../../../infrastructure/local/duckdns-wildcard-cert/
+- ../../../../infrastructure/local/duckdns-wildcard-cert-cm/
 - ../../../../infrastructure/base/ingress-nginx/
 

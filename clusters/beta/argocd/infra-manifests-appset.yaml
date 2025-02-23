@@ -13,7 +13,7 @@ spec:
       - name: duckdns-secret
         environment: base
         branch: main
-      - name: duckdns-wildcard-cert
+      - name: duckdns-wildcard-cert-cm
         environment: local
         branch: main
   template:
