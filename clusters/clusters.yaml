@@ -13,6 +13,7 @@ clusters:
     config:
     - external-secrets
     - kyverno
+    - kyverno-policies
     infrastructure:
     - external-secrets-store
     - duckdns-wildcard-cert-ext
