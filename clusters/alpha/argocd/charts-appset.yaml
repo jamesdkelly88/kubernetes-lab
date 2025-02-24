@@ -28,6 +28,13 @@ spec:
         namespace: kubetail
         repository: https://kubetail-org.github.io/helm-charts/
         version: 0.9.6
+      - appName: policy-reporter
+        branch: main
+        chart: policy-reporter
+        environment: local
+        namespace: policy-reporter
+        repository: https://kyverno.github.io/policy-reporter
+        version: 3.0.4
   template:
     metadata:
       name: '{{appName}}'

@@ -10,6 +10,7 @@ clusters:
     - kubernetes-dashboard
     - kubernetes-dashboard-ingress
     - kubetail
+    - policy-reporter
     config:
     - external-secrets
     - kyverno
