@@ -1,12 +1,16 @@
-ingress:
-  enabled: true
-  annotations:
-    ingress.kubernetes.io/ssl-redirect: "true"
-  hosts: kyverno.jklocal.duckdns.org
-  tls:
-  - hosts: 
-    - "*.jklocal.duckdns.org"
 kyverno-plugin:
   enabled: true
 ui:
   enabled: true
+  ingress:
+    enabled: true
+    annotations:
+      ingress.kubernetes.io/ssl-redirect: "true"
+    hosts:
+      - host: kyverno.jklocal.duckdns.org
+        paths:
+        - path: "/"
+          pathType: ImplementationSpecific
+    tls:
+    - hosts: 
+      - "*.jklocal.duckdns.org"
