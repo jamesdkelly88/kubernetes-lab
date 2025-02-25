@@ -15,7 +15,7 @@ configMapGenerator:
 
 images:
 - name: b4bz/homer
-  newTag: "v25.02.1"
+  newTag: "v25.02.2"
 
 replicas:
 - name: homer
