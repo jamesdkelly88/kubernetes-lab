@@ -5,6 +5,7 @@ plugin:
     enabled: true
 ui:
   enabled: true
+  displayMode: dark
   ingress:
     enabled: true
     annotations:
