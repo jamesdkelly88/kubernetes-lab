@@ -13,7 +13,7 @@ spec:
         app.kubernetes.io/name: echo
     spec:
       containers:
-      - image: hashicorp/http-echo:1.0.0
+      - image: hashicorp/http-echo:latest
         imagePullPolicy: IfNotPresent
         name: echo
         args:

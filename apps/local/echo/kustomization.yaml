@@ -6,7 +6,7 @@ resources:
 
 images:
 - name: hashicorp/http-echo
-  newTag: "latest"
+  newTag: "1.0.0"
 
 replicas:
 - name: echo
