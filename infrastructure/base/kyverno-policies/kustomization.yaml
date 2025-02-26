@@ -3,4 +3,18 @@ kind: Kustomization
 namespace: kyverno
 
 resources:
+- application-prevent-default-project-clusterpolicy.yaml
+- check-deprecated-apis-clusterpolicy.yaml
+- disallow-default-namespace-clusterpolicy.yaml
+- disallow-empty-ingress-host-clusterpolicy.yaml
+- disallow-selinux-clusterpolicy.yaml
+- disallow-latest-tag-clusterpolicy.yaml
+- drop-all-capabilities-clusterpolicy.yaml
+- drop-cap-net-raw-clusterpolicy.yaml
+- ingress-host-match-tls-clusterpolicy.yaml
+- no-loadbalancer-service-clusterpolicy.yaml
+- podsecurity-subrule-baseline-clusterpolicy.yaml
+- require-ingress-https-clusterpolicy.yaml
+- require-network-policy-clusterpolicy.yaml
+- require-ro-rootfs-clusterpolicy.yaml
 - restrict-nodeport-clusterpolicy.yaml

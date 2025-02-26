@@ -8,7 +8,7 @@ spec:
   - list:
       elements:
       - name: kyverno-policies
-        environment: base
+        environment: alpha
         branch: main
       - name: external-secrets-store
         environment: base
