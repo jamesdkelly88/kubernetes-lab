@@ -1,0 +1,7 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: trivy-operator-polr-adapter
+spec:
+  interval: 24h
+  url: https://fjogeleit.github.io/trivy-operator-polr-adapter

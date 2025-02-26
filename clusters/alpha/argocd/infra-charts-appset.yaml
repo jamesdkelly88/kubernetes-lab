@@ -30,6 +30,13 @@ spec:
         version: 4.11.3
       - appName: trivy
         branch: main
+        chart: trivy-operator-polr-adapter
+        environment: base
+        namespace: trivy-adapter
+        repository: https://fjogeleit.github.io/trivy-operator-polr-adapter
+        version: 0.10.0
+      - appName: trivy-polr-adapter
+        branch: main
         chart: trivy-operator
         environment: base
         namespace: trivy-system

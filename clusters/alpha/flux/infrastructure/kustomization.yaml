@@ -5,4 +5,5 @@ resources:
 - ../../../../infrastructure/local/duckdns-wildcard-cert-ext/
 - ../../../../infrastructure/base/ingress-nginx/
 - ../../../../infrastructure/base/trivy/
+- ../../../../infrastructure/base/trivy-polr-adapter/
 
