@@ -4,4 +4,5 @@ resources:
 - ../../../../infrastructure/base/external-secrets-store/
 - ../../../../infrastructure/local/duckdns-wildcard-cert-ext/
 - ../../../../infrastructure/base/ingress-nginx/
+- ../../../../infrastructure/base/trivy/
 

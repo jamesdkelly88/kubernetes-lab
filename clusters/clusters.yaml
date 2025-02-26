@@ -19,6 +19,7 @@ clusters:
     - external-secrets-store
     - duckdns-wildcard-cert-ext
     - ingress-nginx
+    - trivy
   beta:
     branch: main
     environment: local

@@ -13,6 +13,7 @@
     talosctl
     terraform
     tflint
+    trivy
   ];
 
   shellHook = ''

@@ -1,4 +1,7 @@
-kyverno-plugin:
-  enabled: true
+plugin:
+  kyverno:
+    enabled: true
+  trivy:
+    enabled: true
 ui:
   enabled: true
