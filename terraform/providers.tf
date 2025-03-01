@@ -48,6 +48,11 @@ terraform {
       version = "0.9.6"
     }
 
+    null = {
+      source  = "hashicorp/null"
+      version = "3.2.3"
+    }
+
     time = {
       source  = "hashicorp/time"
       version = "0.12.1"
@@ -98,5 +103,7 @@ provider "kubernetes" {
 provider "kustomization" {
   kubeconfig_raw = local.host.type == "kind" ? kind_cluster.kind[0].kubeconfig : null
 }
+
+provider "null" {}
 
 provider "time" {}

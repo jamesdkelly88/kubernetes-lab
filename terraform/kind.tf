@@ -27,3 +27,12 @@ resource "kind_cluster" "kind" {
     # }
   }
 }
+
+resource "null_resource" "remove_local_storage" {
+  count      = local.host.type == "kind" ? 1 : 0
+  depends_on = [time_sleep.wait_for_cluster]
+
+  provisioner "local-exec" {
+    command = "KUBECONFIG=${local.kubeconfig} kubectl delete -k ./remove-local-storage/"
+  }
+}
