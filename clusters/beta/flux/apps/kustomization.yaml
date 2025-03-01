@@ -7,4 +7,6 @@ resources:
 - ../../../../apps/local/homer/
 - ../../../../apps/base/kubernetes-dashboard/
 - ../../../../apps/local/kubernetes-dashboard-ingress/
+- ../../../../apps/local/kubetail/
+- ../../../../apps/local/policy-reporter/
 

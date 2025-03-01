@@ -7,6 +7,17 @@ vars:
 
 tasks:
 
+# Git
+
+  setup-hooks:
+    desc: Create repo hooks
+    silent: true
+    aliases:
+      - "hooks"
+    cmds:
+    - echo "pwsh .pwsh/define-clusters.ps1" > .git/hooks/pre-commit
+
+
 # Task
 
   docs:
