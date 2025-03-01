@@ -7,13 +7,13 @@ spec:
   generators:
   - list:
       elements:
+      - name: kyverno-policies
+        environment: base
+        branch: main
       - name: external-secrets-store
         environment: base
         branch: main
-      - name: duckdns-secret
-        environment: base
-        branch: main
-      - name: duckdns-wildcard-cert-cm
+      - name: duckdns-wildcard-cert-ext
         environment: local
         branch: main
   template:

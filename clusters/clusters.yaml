@@ -31,12 +31,15 @@ clusters:
     - homer
     - kubernetes-dashboard
     - kubernetes-dashboard-ingress
+    - kubetail
+    - policy-reporter
     config:
-    - cert-manager
     - external-secrets
+    - kyverno
+    - kyverno-policies
     infrastructure:
     - external-secrets-store
-    - cert-manager-duckdns
-    - duckdns-secret
-    - duckdns-wildcard-cert-cm
+    - duckdns-wildcard-cert-ext
     - ingress-nginx
+    - trivy
+    - trivy-polr-adapter
