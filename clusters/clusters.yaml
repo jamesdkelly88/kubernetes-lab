@@ -14,12 +14,12 @@ clusters:
     config:
     - external-secrets
     - kyverno
-    - kyverno-policies
+    # - kyverno-policies
     infrastructure:
     - external-secrets-store
     - duckdns-wildcard-cert-ext
     - ingress-nginx
-    - trivy
+    - trivy-operator
     - trivy-polr-adapter
   beta:
     branch: main
@@ -41,5 +41,5 @@ clusters:
     - external-secrets-store
     - duckdns-wildcard-cert-ext
     - ingress-nginx
-    - trivy
+    - trivy-operator
     - trivy-polr-adapter

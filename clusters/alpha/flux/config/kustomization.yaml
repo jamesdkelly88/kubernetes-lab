@@ -3,5 +3,4 @@ kind: Kustomization
 resources:
 - ../../../../infrastructure/base/external-secrets/
 - ../../../../infrastructure/base/kyverno/
-- ../../../../infrastructure/alpha/kyverno-policies/
 
