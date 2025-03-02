@@ -7,9 +7,6 @@ spec:
   generators:
   - list:
       elements:
-      - name: kyverno-policies
-        environment: base
-        branch: main
       - name: external-secrets-store
         environment: base
         branch: main
