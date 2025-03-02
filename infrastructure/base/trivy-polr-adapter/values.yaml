@@ -1,2 +1,21 @@
+adapters:
+  cisKubeBenchReports:
+    enabled: true
+  clusterInfraAssessmentReports:
+    enabled: true
+  clusterVulnerabilityReports:
+    enabled: true
+  complianceReports:
+    enabled: true
+  configAuditReports:
+    enabled: true
+  exposedSecretReports:
+    enabled: true
+  infraAssessmentReports:
+    enabled: true
+  rbacAssessmentReports:
+    enabled: true
+  vulnerabilityReports:
+    enabled: true
 crds:
   install: true
