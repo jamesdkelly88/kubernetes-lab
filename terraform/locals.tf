@@ -1,9 +1,9 @@
 locals {
   hosts = {
     local1 = {
-      hostname    = "localhost"
-      ip_address  = "127.0.0.1"
-      dns_domain  = "jklocal.duckdns.org"
+      hostname   = "localhost"
+      ip_address = "127.0.0.1"
+      dns_domain = "jklocal.duckdns.org"
       # renovate: datasource=github-releases depName=kubernetes/kubernetes
       k8s_version = "1.31.0"
       ports = {
@@ -15,9 +15,9 @@ locals {
       type   = "kind"
     }
     local2 = {
-      hostname    = "localhost2"
-      ip_address  = "127.0.0.1"
-      dns_domain  = "jklocal.duckdns.org"
+      hostname   = "localhost2"
+      ip_address = "127.0.0.1"
+      dns_domain = "jklocal.duckdns.org"
       # renovate: datasource=github-releases depName=kubernetes/kubernetes
       k8s_version = "1.30.0"
       ports = {
@@ -25,6 +25,21 @@ locals {
         8443  = 443
         31000 = 30000
         31001 = 30001
+      }
+      secret = "local"
+      type   = "kind"
+    }
+    local3 = {
+      hostname    = "localhost3"
+      ip_address  = "127.0.0.1"
+      dns_domain  = "jklocal.duckdns.org"
+      # renovate: datasource=github-releases depName=kubernetes/kubernetes
+      k8s_version = "1.32.2"
+      ports = {
+        8888  = 80
+        9443  = 443
+        32000 = 30000
+        32001 = 30001
       }
       secret = "local"
       type   = "kind"
@@ -43,6 +58,12 @@ locals {
       fluxcd = false
       branch = "main"
       host   = "local2"
+    }
+    gamma = {
+      argocd = false
+      fluxcd = false
+      branch = "main"
+      host   = "local3"
     }
   }
 
