@@ -14,13 +14,6 @@ spec:
         namespace: external-secrets
         repository: https://charts.external-secrets.io
         version: 0.13.0
-      - appName: kyverno
-        branch: main
-        chart: kyverno
-        environment: base
-        namespace: kyverno
-        repository: https://kyverno.github.io/kyverno/
-        version: 3.3.7
       - appName: ingress-nginx
         branch: main
         chart: ingress-nginx

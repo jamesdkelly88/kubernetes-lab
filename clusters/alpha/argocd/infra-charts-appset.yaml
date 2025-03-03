@@ -14,7 +14,7 @@ spec:
         namespace: external-secrets
         repository: https://charts.external-secrets.io
         version: 0.13.0
-      - appName: kyverno
+      - appName: kyverno-chart
         branch: main
         chart: kyverno
         environment: base

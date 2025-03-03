@@ -13,7 +13,7 @@ clusters:
     - policy-reporter
     config:
     - external-secrets
-    - kyverno
+    - kyverno-chart
     # - kyverno-policies
     infrastructure:
     - external-secrets-store
@@ -35,7 +35,7 @@ clusters:
     - policy-reporter
     config:
     - external-secrets
-    - kyverno
+    - kyverno-yaml
     # - kyverno-policies
     infrastructure:
     - external-secrets-store
