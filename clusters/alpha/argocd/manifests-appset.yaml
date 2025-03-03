@@ -10,15 +10,23 @@ spec:
       - name: echo
         environment: local
         branch: main
+        replace: "false"
+        serverside: "false"
       - name: flux-capacitor
         environment: local
         branch: main
+        replace: "false"
+        serverside: "false"
       - name: homer
         environment: local
         branch: main
+        replace: "false"
+        serverside: "false"
       - name: kubernetes-dashboard-ingress
         environment: local
         branch: main
+        replace: "false"
+        serverside: "false"
   template:
     metadata:
       name: '{{name}}'
@@ -38,4 +46,6 @@ spec:
           selfHeal: true
         syncOptions:
         - ApplyOutOfSyncOnly=true
+        - Replace={{replace}}
+        - ServerSideApply={{serverside}}
 

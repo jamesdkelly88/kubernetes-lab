@@ -1,5 +1,8 @@
 $ErrorActionPreference = "Stop"
 
+$replace = @("kyverno-yaml")
+$serverside = @("kyverno-yaml")
+
 # Install-Module -Name powershell-yaml -Force -Scope CurrentUser
 Import-Module -Name powershell-yaml
 
@@ -98,7 +101,9 @@ foreach($c in $config.clusters.keys)
         chart = $release.spec.chart.spec.chart
         environment = $environment
         namespace = $release.spec.chart.spec.sourceRef.namespace
+        replace = ($name -in $replace).ToString().ToLower()
         repository = $repository.spec.url
+        serverside = ($name -in $serverside).ToString().ToLower()
         version = $release.spec.chart.spec.version
       }
     }
@@ -109,6 +114,8 @@ foreach($c in $config.clusters.keys)
         name = $name
         environment = $environment
         branch = $cluster.branch
+        replace = ($name -in $replace).ToString().ToLower()
+        serverside = ($name -in $serverside).ToString().ToLower()
       }
     }
   }
@@ -130,7 +137,9 @@ foreach($c in $config.clusters.keys)
         chart = $release.spec.chart.spec.chart
         environment = $environment
         namespace = $release.spec.chart.spec.sourceRef.namespace
+        replace = ($name -in $replace).ToString().ToLower()
         repository = $repository.spec.url
+        serverside = ($name -in $serverside).ToString().ToLower()
         version = $release.spec.chart.spec.version
       }
     }
@@ -141,6 +150,8 @@ foreach($c in $config.clusters.keys)
         name = $name
         environment = $environment
         branch = $cluster.branch
+        replace = ($name -in $replace).ToString().ToLower()
+        serverside = ($name -in $serverside).ToString().ToLower()
       }
     }
   }

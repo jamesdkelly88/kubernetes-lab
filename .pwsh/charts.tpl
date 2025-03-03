@@ -34,4 +34,5 @@ spec:
           selfHeal: true
         syncOptions:
           - CreateNamespace=true
-          - ServerSideApply=true
+          - Replace={{replace}}
+          - ServerSideApply={{serverside}}

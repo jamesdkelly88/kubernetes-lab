@@ -12,28 +12,36 @@ spec:
         chart: hello
         environment: local
         namespace: hello
+        replace: "false"
         repository: https://cloudecho.github.io/charts/
+        serverside: "false"
         version: 0.1.2
       - appName: kubernetes-dashboard
         branch: main
         chart: kubernetes-dashboard
         environment: base
         namespace: kubernetes-dashboard
+        replace: "false"
         repository: https://kubernetes.github.io/dashboard/
+        serverside: "false"
         version: 7.10.4
       - appName: kubetail
         branch: main
         chart: kubetail
         environment: local
         namespace: kubetail
+        replace: "false"
         repository: https://kubetail-org.github.io/helm-charts/
+        serverside: "false"
         version: 0.9.6
       - appName: policy-reporter
         branch: main
         chart: policy-reporter
         environment: local
         namespace: policy-reporter
+        replace: "false"
         repository: https://kyverno.github.io/policy-reporter
+        serverside: "false"
         version: 3.0.4
   template:
     metadata:
@@ -62,5 +70,6 @@ spec:
           selfHeal: true
         syncOptions:
         - CreateNamespace=true
-        - ServerSideApply=true
+        - Replace={{replace}}
+        - ServerSideApply={{serverside}}
 

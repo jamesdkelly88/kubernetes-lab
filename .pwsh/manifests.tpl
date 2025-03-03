@@ -26,3 +26,5 @@ spec:
           selfHeal: true
         syncOptions:
         - ApplyOutOfSyncOnly=true
+        - Replace={{replace}}
+        - ServerSideApply={{serverside}}

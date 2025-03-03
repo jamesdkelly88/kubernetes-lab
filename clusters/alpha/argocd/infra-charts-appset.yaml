@@ -12,35 +12,45 @@ spec:
         chart: external-secrets
         environment: base
         namespace: external-secrets
+        replace: "false"
         repository: https://charts.external-secrets.io
+        serverside: "false"
         version: 0.13.0
       - appName: kyverno-chart
         branch: main
         chart: kyverno
         environment: base
         namespace: kyverno
+        replace: "false"
         repository: https://kyverno.github.io/kyverno/
+        serverside: "false"
         version: 3.3.7
       - appName: ingress-nginx
         branch: main
         chart: ingress-nginx
         environment: base
         namespace: ingress-nginx
+        replace: "false"
         repository: https://kubernetes.github.io/ingress-nginx
+        serverside: "false"
         version: 4.11.3
       - appName: trivy-operator
         branch: main
         chart: trivy-operator
         environment: base
         namespace: trivy-system
+        replace: "false"
         repository: https://aquasecurity.github.io/helm-charts/
+        serverside: "false"
         version: 0.26.1
       - appName: trivy-polr-adapter
         branch: main
         chart: trivy-operator-polr-adapter
         environment: base
         namespace: trivy-adapter
+        replace: "false"
         repository: https://fjogeleit.github.io/trivy-operator-polr-adapter
+        serverside: "false"
         version: 0.10.0
   template:
     metadata:
@@ -69,5 +79,6 @@ spec:
           selfHeal: true
         syncOptions:
         - CreateNamespace=true
-        - ServerSideApply=true
+        - Replace={{replace}}
+        - ServerSideApply={{serverside}}
 
