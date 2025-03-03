@@ -88,7 +88,7 @@ tasks:
 
   init:
     cmds:
-    - terraform init
+    - terraform init -upgrade
     desc: Initialise terraform
     dir: '{{ .ROOT_DIR }}/terraform'
     env:

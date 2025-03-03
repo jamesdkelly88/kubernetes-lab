@@ -30,9 +30,9 @@ locals {
       type   = "kind"
     }
     local3 = {
-      hostname    = "localhost3"
-      ip_address  = "127.0.0.1"
-      dns_domain  = "jklocal.duckdns.org"
+      hostname   = "localhost3"
+      ip_address = "127.0.0.1"
+      dns_domain = "jklocal.duckdns.org"
       # renovate: datasource=github-releases depName=kubernetes/kubernetes
       k8s_version = "1.32.2"
       ports = {
