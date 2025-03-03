@@ -4,6 +4,7 @@ locals {
       hostname    = "localhost"
       ip_address  = "127.0.0.1"
       dns_domain  = "jklocal.duckdns.org"
+      # renovate: datasource=github-releases depName=kubernetes/kubernetes
       k8s_version = "1.31.0"
       ports = {
         80    = 80
@@ -17,6 +18,7 @@ locals {
       hostname    = "localhost2"
       ip_address  = "127.0.0.1"
       dns_domain  = "jklocal.duckdns.org"
+      # renovate: datasource=github-releases depName=kubernetes/kubernetes
       k8s_version = "1.30.0"
       ports = {
         8080  = 80

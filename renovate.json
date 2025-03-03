@@ -8,12 +8,27 @@
     ],
     "packageRules": [],
     "flux": {
-        "fileMatch": ["\\.yaml$"]
+        "fileMatch": [
+            "\\.yaml$"
+        ]
     },
     "kubernetes": {
         "fileMatch": [
             "apps/.+\\.yaml$",
             "infrastructure/.+\\.yaml$"
         ]
-    }
+    },
+    "customManagers": [
+        {
+            "customType": "regex",
+            "fileMatch": [
+                "^terraform/locals.tf$"
+            ],
+            "matchStrings": [
+                "#\\s?renovate:(?: datasource=(?<datasource>.+?))? depName=(?<depName>.+?)(?: packageName=(?<packageName>.+?))?(?: registryUrl=(?<registryUrl>.+?))?(?: extractVersion=(?<extractVersion>.+?))?(?: versioning=(?<versioning>.+?))?\\s.+?_version\\s?=\\s?\"?(?<currentValue>.+?)\"?\\s"
+            ],
+            "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver-coerced{{/if}}",
+            "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^v?(?<version>.+)${{/if}}"
+        }
+    ]
 }
