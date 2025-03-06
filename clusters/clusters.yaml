@@ -43,3 +43,9 @@ clusters:
     - ingress-nginx
     - trivy-operator
     - trivy-polr-adapter
+  gamma:
+    branch: main
+    environment: local
+    apps: []
+    config: []
+    infrastructure: []
