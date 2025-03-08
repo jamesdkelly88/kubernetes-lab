@@ -156,3 +156,39 @@ env $(cat ../.env | xargs) terraform plan -var 'cluster=alpha' -out=tfplan -dest
   - add applications to `flux/apps/kustomization.yaml`
   - add infrastructure to `flux/infrastructure/kustomization.yaml`
   - add config dependencies to `flux/config/kustomization.yaml`
+
+### Manually
+
+Minimum install for a functional cluster:
+- infrastructure/external-secrets
+- infrastructure/external-secrets-store
+- a duckdns certificate source
+- an ingress controller
+
+#### Helm
+
+```
+export KUBECONFIG=~/.kube/<host>
+helm repo add <repo name> <repo url>
+helm install -n <namespace> -f values.yaml --create-namespace <release name> <repo name>/<chart name>
+```
+
+Removing:
+
+```
+helm uninstall <release name>
+helm repo remove <repo name>
+```
+
+#### Manifests
+
+```
+export KUBECONFIG=~/.kube/<host>
+kubectl apply -k <folder>
+```
+
+Removing:
+
+```
+kubectl delete -k <folder>
+```
