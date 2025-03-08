@@ -16,7 +16,7 @@ tasks:
       - "hooks"
     cmds:
     - echo "pwsh .pwsh/define-clusters.ps1" > .git/hooks/pre-commit
-
+    - chmod +x .git/hooks/pre-commit
 
 # Task
 
