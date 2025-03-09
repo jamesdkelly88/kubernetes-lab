@@ -4,6 +4,7 @@ resources:
 - ../../../../apps/local/argocd-ingress/
 - ../../../../apps/local/echo/
 - ../../../../apps/local/hello/
+- ../../../../apps/local/homepage/
 - ../../../../apps/local/homer/
 - ../../../../apps/base/kubernetes-dashboard/
 - ../../../../apps/local/kubernetes-dashboard-ingress/

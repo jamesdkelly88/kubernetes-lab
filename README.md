@@ -170,6 +170,8 @@ Minimum install for a functional cluster:
 ```
 export KUBECONFIG=~/.kube/<host>
 helm repo add <repo name> <repo url>
+helm repo update
+helm search repo
 helm install -n <namespace> -f values.yaml --create-namespace <release name> <repo name>/<chart name>
 ```
 

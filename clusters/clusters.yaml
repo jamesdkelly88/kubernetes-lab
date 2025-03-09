@@ -28,6 +28,7 @@ clusters:
     - argocd-ingress
     - echo
     - hello
+    - homepage
     - homer
     - kubernetes-dashboard
     - kubernetes-dashboard-ingress
