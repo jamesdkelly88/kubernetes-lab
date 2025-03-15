@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filebrowser
+  labels:
+    app: filebrowser
+spec:
+  selector:
+    matchLabels:
+      app: filebrowser
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: filebrowser
+    spec:
+      containers:
+      - name: filebrowser
+        image: filebrowser/filebrowser:latest
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: 256Mi
+            cpu: "250m"
+          requests:
+            memory: 128Mi
+            cpu: "80m"
+        volumeMounts:
+        - mountPath: /srv
+          name: data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: data
