@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mvs-tk5
+spec:
+  selector:
+    app: mvs-tk5
+  ports:
+    - name: hercules
+      protocol: TCP
+      port: 8038
+      targetPort: hercules
+    - name: httpd
+      protocol: TCP
+      port: 8080
+      targetPort: httpd
+  type: ClusterIP

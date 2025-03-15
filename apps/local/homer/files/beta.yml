@@ -65,6 +65,18 @@ services:
         logo: "https://raw.githubusercontent.com/kubetail-org/kubetail/refs/heads/main/dashboard-ui/public/favicon.svg"
         subtitle: "Kubernetes logging dashboard"
         url: "https://kubetail.jklocal.duckdns.org:8443"
+      - name: "Mainframe FileBrowser"
+        logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/filebrowser.svg"
+        subtitle: File manager for all mainframe volumes
+        url: https://mainframe-files.jklocal.duckdns.org:8443/
+      - name: "MVS TK5 Hercules"
+        logo: https://upload.wikimedia.org/wikipedia/commons/7/71/Hercules_%28software%29_logo.png
+        subtitle: System console on the mainframe
+        url: https://tk5-hercules.jklocal.duckdns.org:8443/
+      - name: "MV5 TK5 Web Server"
+        icon: "fa-solid fa-globe"
+        subtitle: Web server on the mainframe
+        url: https://tk5.jklocal.duckdns.org:8443/
       - name: "Policy Reporter"
         logo: "https://raw.githubusercontent.com/cncf/artwork/refs/heads/main/projects/kyverno/icon/color/kyverno-icon-color.svg"
         subtitle: "Kyverno and Trivy dashboard"

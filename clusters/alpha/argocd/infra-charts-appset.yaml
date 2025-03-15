@@ -15,7 +15,7 @@ spec:
         replace: "false"
         repository: https://charts.external-secrets.io
         serverside: "false"
-        version: 0.13.0
+        version: 0.14.4
       - appName: kyverno-chart
         branch: main
         chart: kyverno
@@ -33,7 +33,7 @@ spec:
         replace: "false"
         repository: https://kubernetes.github.io/ingress-nginx
         serverside: "false"
-        version: 4.11.3
+        version: 4.12.0
       - appName: trivy-operator
         branch: main
         chart: trivy-operator

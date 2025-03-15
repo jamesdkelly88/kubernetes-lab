@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mvs-tk5
+  labels:
+    app: mvs-tk5
+spec:
+  selector:
+    matchLabels:
+      app: mvs-tk5
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mvs-tk5
+    spec:
+      containers:
+      - name: tk5
+        image: mhardingdk/mvs:tk5 
+        ports:
+        - containerPort: 3270
+          name: terminal
+        - containerPort: 8038
+          name: hercules
+        - containerPort: 8080
+          name: httpd
+        resources:
+          limits:
+            memory: 256Mi
+            cpu: "250m"
+          requests:
+            memory: 128Mi
+            cpu: "80m"
+        volumeMounts:
+        - mountPath: /app/mvs/conf
+          name: conf
+        - mountPath: /app/mvs/dasd
+          name: dasd
+        - mountPath: /app/mvs/doc
+          name: doc
+        - mountPath: /app/mvs/log
+          name: log
+        - mountPath: /app/mvs/pch
+          name: pch
+        - mountPath: /app/mvs/prt
+          name: prt
+      volumes:
+      - name: conf
+        persistentVolumeClaim:
+          claimName: mvs-tk5-conf
+      - name: dasd
+        persistentVolumeClaim:
+          claimName: mvs-tk5-dasd
+      - name: doc
+        persistentVolumeClaim:
+          claimName: mvs-tk5-doc
+      - name: log
+        persistentVolumeClaim:
+          claimName: mvs-tk5-log
+      - name: pch
+        persistentVolumeClaim:
+          claimName: mvs-tk5-pch
+      - name: prt
+        persistentVolumeClaim:
+          claimName: mvs-tk5-prt
+
+

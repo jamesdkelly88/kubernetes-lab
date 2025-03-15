@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: mainframe
+resources:
+# namespace
+  - namespace.yaml
+# mvs tk5
+  - mvs-tk5-conf-pvc.yaml
+  - mvs-tk5-dasd-pvc.yaml
+  - mvs-tk5-doc-pvc.yaml
+  - mvs-tk5-log-pvc.yaml
+  - mvs-tk5-pch-pvc.yaml
+  - mvs-tk5-prt-pvc.yaml
+  - mvs-tk5-deployment.yaml
+  - mvs-tk5-service.yaml
+  - mvs-tk5-herc-ingress.yaml
+  - mvs-tk5-httpd-ingress.yaml
+# filebrowser  
+  - filebrowser-deployment.yaml
+  - filebrowser-service.yaml
+  - filebrowser-ingress.yaml

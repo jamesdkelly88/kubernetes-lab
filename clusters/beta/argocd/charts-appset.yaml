@@ -33,7 +33,7 @@ spec:
         replace: "false"
         repository: https://kubernetes.github.io/dashboard/
         serverside: "false"
-        version: 7.10.4
+        version: 7.11.1
       - appName: kubetail
         branch: main
         chart: kubetail
@@ -42,7 +42,7 @@ spec:
         replace: "false"
         repository: https://kubetail-org.github.io/helm-charts/
         serverside: "false"
-        version: 0.9.6
+        version: 0.9.8
       - appName: policy-reporter
         branch: main
         chart: policy-reporter
@@ -51,7 +51,7 @@ spec:
         replace: "false"
         repository: https://kyverno.github.io/policy-reporter
         serverside: "false"
-        version: 3.0.4
+        version: 3.0.7
   template:
     metadata:
       name: '{{appName}}'

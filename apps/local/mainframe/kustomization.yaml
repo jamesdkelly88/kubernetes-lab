@@ -1,0 +1,46 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../base/mainframe/
+
+patches:
+- patch: |-
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: 
+      - "*.jklocal.duckdns.org"
+    - op: replace
+      path: /spec/rules/0/host
+      value: mainframe-files.jklocal.duckdns.org
+  target:
+    group: networking.k8s.io
+    version: v1
+    kind: Ingress
+    name: filebrowser
+- patch: |-
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: 
+      - "*.jklocal.duckdns.org"
+    - op: replace
+      path: /spec/rules/0/host
+      value: tk5-hercules.jklocal.duckdns.org
+  target:
+    group: networking.k8s.io
+    version: v1
+    kind: Ingress
+    name: mvs-tk5-hercules
+- patch: |-
+    - op: replace
+      path: /spec/tls/0/hosts
+      value: 
+      - "*.jklocal.duckdns.org"
+    - op: replace
+      path: /spec/rules/0/host
+      value: tk5.jklocal.duckdns.org
+  target:
+    group: networking.k8s.io
+    version: v1
+    kind: Ingress
+    name: mvs-tk5-httpd

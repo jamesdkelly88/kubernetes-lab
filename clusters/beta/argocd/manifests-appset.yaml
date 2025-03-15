@@ -27,6 +27,11 @@ spec:
         branch: main
         replace: "false"
         serverside: "false"
+      - name: mainframe
+        environment: local
+        branch: main
+        replace: "false"
+        serverside: "false"
   template:
     metadata:
       name: '{{name}}'

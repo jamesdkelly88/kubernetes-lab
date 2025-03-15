@@ -33,6 +33,7 @@ clusters:
     - kubernetes-dashboard
     - kubernetes-dashboard-ingress
     - kubetail
+    - mainframe
     - policy-reporter
     config:
     - external-secrets

@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mvs-tk5-hercules
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  tls:
+  - hosts: 
+    - change.me
+  rules:
+  - host: change.me
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mvs-tk5
+            port:
+              name: hercules

@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filebrowser
+  labels:
+    app: filebrowser
+spec:
+  selector:
+    matchLabels:
+      app: filebrowser
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: filebrowser
+    spec:
+      containers:
+      - name: filebrowser
+        image: filebrowser/filebrowser:latest
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: 256Mi
+            cpu: "250m"
+          requests:
+            memory: 128Mi
+            cpu: "80m"
+        volumeMounts:
+        - mountPath: /srv/mvs-tk5/conf
+          name: conf
+        - mountPath: /srv/mvs-tk5/dasd
+          name: dasd
+        - mountPath: /srv/mvs-tk5/doc
+          name: doc
+        - mountPath: /srv/mvs-tk5/log
+          name: log
+        - mountPath: /srv/mvs-tk5/pch
+          name: pch
+        - mountPath: /srv/mvs-tk5/prt
+          name: prt
+      volumes:
+      - name: conf
+        persistentVolumeClaim:
+          claimName: mvs-tk5-conf
+      - name: dasd
+        persistentVolumeClaim:
+          claimName: mvs-tk5-dasd
+      - name: doc
+        persistentVolumeClaim:
+          claimName: mvs-tk5-doc
+      - name: log
+        persistentVolumeClaim:
+          claimName: mvs-tk5-log
+      - name: pch
+        persistentVolumeClaim:
+          claimName: mvs-tk5-pch
+      - name: prt
+        persistentVolumeClaim:
+          claimName: mvs-tk5-prt
