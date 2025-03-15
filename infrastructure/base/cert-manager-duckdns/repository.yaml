@@ -2,6 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: cert-manager-duckdns
+  namespace: cert-manager
 spec:
   interval: 24h
   url: https://csp33.github.io/cert-manager-duckdns-webhook

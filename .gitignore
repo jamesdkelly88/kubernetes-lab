@@ -39,3 +39,6 @@ tfplan
 .terraformrc
 terraform.rc
 .terraform.lock.hcl
+
+# pester output
+results.xml

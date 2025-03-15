@@ -4,5 +4,6 @@ namespace: flux-system
 
 resources:
 - repository.yaml
+- capacitor.yaml
 - networkpolicy.yaml
 - ingress.yaml
