@@ -21,6 +21,7 @@
 - [x] multiple local clusters
 - [ ] API call to update DuckDNS if not set to host IP
 - [x] switch flux install to helm chart so repo write access not required
+- [ ] host path / docker volume for kind for PV storage that persists rebuilds
 
 # Manifests
 
