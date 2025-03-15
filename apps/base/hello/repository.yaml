@@ -2,6 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: cloudecho
+  namespace: hello
 spec:
   interval: 24h
   url: https://cloudecho.github.io/charts/
