@@ -1,1 +1,15 @@
-replicaCount: 3
+engines:
+  local:
+    lvm:
+      enabled: false
+    zfs:
+      enabled: false
+  replicated:
+    mayastor:
+      enabled: false
+
+localpv-provisioner:
+  localpv:
+    basePath: "/var/openebs/local"
+  hostpathClass:
+    isDefaultClass: true
