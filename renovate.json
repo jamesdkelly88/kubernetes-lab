@@ -7,6 +7,9 @@
         "main"
     ],
     "packageRules": [],
+    "argocd": {
+        "fileMatch": ["^clusters\\/\\w*?\\/argocd\\/(infra-)?charts-appset\\.yaml$"]
+    },
     "flux": {
         "fileMatch": [
             "\\.yaml$"
