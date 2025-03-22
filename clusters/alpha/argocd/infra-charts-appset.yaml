@@ -16,6 +16,15 @@ spec:
         repository: https://charts.external-secrets.io
         serverside: "false"
         version: 0.14.4
+      - appName: longhorn
+        branch: main
+        chart: longhorn
+        environment: local
+        namespace: longhorn-system
+        replace: "false"
+        repository: https://charts.longhorn.io
+        serverside: "false"
+        version: 1.8.1
       - appName: ingress-nginx
         branch: main
         chart: ingress-nginx

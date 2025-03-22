@@ -1,0 +1,6 @@
+persistence:
+  defaultClass: true
+ingress:
+  enabled: true
+  host: longhorn.jklocal.duckdns.org
+  tls: true
