@@ -235,3 +235,5 @@ foreach($c in $config.clusters.keys)
   }
   
 }
+
+. "$PSScriptRoot/define-homepages.ps1"

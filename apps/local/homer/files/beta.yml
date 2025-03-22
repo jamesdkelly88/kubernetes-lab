@@ -1,83 +1,74 @@
----
-title: "β Cluster"
-subtitle: "Homer"
-logo: "logo.png"
+Title: β Cluster
+subtitle: Homer
+logo: logo.png
 header: true
-footer: '<p>Created with <span class="has-text-danger">❤️</span> with <a href="https://bulma.io/">bulma</a>, <a href="https://vuejs.org/">vuejs</a> & <a href="https://fontawesome.com/">font awesome</a> // Fork me on <a href="https://github.com/bastienwirtz/homer"><i class="fab fa-github-alt"></i></a></p>' # set false if you want to hide it.
+footer: <p>Created with <span class="has-text-danger">❤️</span> with <a href="https://bulma.io/">bulma</a>, <a href="https://vuejs.org/">vuejs</a> & <a href="https://fontawesome.com/">font awesome</a> // Fork me on <a href="https://github.com/bastienwirtz/homer"><i class="fab fa-github-alt"></i></a></p>
 theme: default
 colors:
   light:
-    highlight-primary: "#3367d6"
-    highlight-secondary: "#4285f4"
-    highlight-hover: "#5a95f5"
-    background: "#f5f5f5"
-    card-background: "#ffffff"
-    text: "#363636"
-    text-header: "#ffffff"
-    text-title: "#303030"
-    text-subtitle: "#424242"
+    highlight-primary: '#3367d6'
+    highlight-secondary: '#4285f4'
+    highlight-hover: '#5a95f5'
+    background: '#f5f5f5'
+    card-background: '#ffffff'
+    text: '#363636'
+    text-header: '#ffffff'
+    text-title: '#303030'
+    text-subtitle: '#424242'
     card-shadow: rgba(0, 0, 0, 0.1)
-    link: "#3273dc"
-    link-hover: "#363636"
+    link: '#3273dc'
+    link-hover: '#363636'
   dark:
-    highlight-primary: "#3367d6"
-    highlight-secondary: "#4285f4"
-    highlight-hover: "#5a95f5"
-    background: "#131313"
-    card-background: "#2b2b2b"
-    text: "#eaeaea"
-    text-header: "#ffffff"
-    text-title: "#fafafa"
-    text-subtitle: "#f5f5f5"
+    highlight-primary: '#3367d6'
+    highlight-secondary: '#4285f4'
+    highlight-hover: '#5a95f5'
+    background: '#131313'
+    card-background: '#2b2b2b'
+    text: '#eaeaea'
+    text-header: '#ffffff'
+    text-title: '#fafafa'
+    text-subtitle: '#f5f5f5'
     card-shadow: rgba(0, 0, 0, 0.4)
-    link: "#3273dc"
-    link-hover: "#ffdd57"
+    link: '#3273dc'
+    link-hover: '#ffdd57'
 links:
-  - name: "Clusters"
-    icon: "fa-solid fa-th"
-    url: "#"
-
+- name: Clusters
+  icon: fa-solid fa-th
+  url: '#'
 services:
-  - name: "Applications"
-    icon: "fas fa-cloud"
-    items:
-      - name: "ArgoCD"
-        logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/argo-cd.svg"
-        subtitle: "CI/CD controller"
-        url: "https://argocd.jklocal.duckdns.org:8443"
-      - name: "Echo"
-        icon: "fa-solid fa-comments"
-        subtitle: "Sample manifest application"
-        url: "https://echo.jklocal.duckdns.org:8443"
-      - name: "Hello"
-        icon: "fa-solid fa-globe-europe"
-        subtitle: "Sample helm application"
-        url: "https://hello.jklocal.duckdns.org:8443"
-      - name: "Homer"
-        logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/homer.svg"
-        subtitle: "This dashboard"
-        url: "https://homer.jklocal.duckdns.org:8443#beta"
-      - name: "Kubernetes Dashboard"
-        logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/kubernetes.svg"
-        subtitle: "Official Kubernetes dashboard"
-        url: "https://dashboard.jklocal.duckdns.org:8443"
-      - name: "Kubetail"
-        logo: "https://raw.githubusercontent.com/kubetail-org/kubetail/refs/heads/main/dashboard-ui/public/favicon.svg"
-        subtitle: "Kubernetes logging dashboard"
-        url: "https://kubetail.jklocal.duckdns.org:8443"
-      - name: "Mainframe FileBrowser"
-        logo: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/filebrowser.svg"
-        subtitle: File manager for all mainframe volumes
-        url: https://mainframe-files.jklocal.duckdns.org:8443/
-      - name: "MVS TK5 Hercules"
-        logo: https://upload.wikimedia.org/wikipedia/commons/7/71/Hercules_%28software%29_logo.png
-        subtitle: System console on the mainframe
-        url: https://tk5-hercules.jklocal.duckdns.org:8443/
-      - name: "MV5 TK5 Web Server"
-        icon: "fa-solid fa-globe"
-        subtitle: Web server on the mainframe
-        url: https://tk5.jklocal.duckdns.org:8443/
-      - name: "Policy Reporter"
-        logo: "https://raw.githubusercontent.com/cncf/artwork/refs/heads/main/projects/kyverno/icon/color/kyverno-icon-color.svg"
-        subtitle: "Kyverno and Trivy dashboard"
-        url: "https://kyverno.jklocal.duckdns.org:8443"
+- name: Applications
+  icon: fas fa-cloud
+  items:
+  - name: Echo
+    subtitle: Sample manifest application
+    url: https://echo.jklocal.duckdns.org:8443
+    icon: fa-solid fa-comments
+  - name: Hello
+    subtitle: Sample helm application
+    url: https://hello.jklocal.duckdns.org:8443
+    icon: fa-solid fa-globe-europe
+  - name: Homepage
+    subtitle: Another dashboard
+    url: https://homepage.jklocal.duckdns.org:8443
+    logo: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/homepage.png
+  - name: Homer
+    subtitle: This dashboard
+    url: https://homer.jklocal.duckdns.org:8443#beta
+    logo: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/homer.svg
+  - name: Kubetail
+    subtitle: Kubernetes logging dashboard
+    url: https://kubetail.jklocal.duckdns.org:8443
+    logo: https://raw.githubusercontent.com/kubetail-org/kubetail/refs/heads/main/dashboard-ui/public/favicon.svg
+  - name: Mainframe FileBrowser
+    subtitle: File manager for all mainframe volumes
+    url: https://mainframe-files.jklocal.duckdns.org:8443
+    logo: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/filebrowser.svg
+  - name: MVS TK5 Hercules
+    subtitle: System console on the TK5 mainframe
+    url: https://tk5-hercules.jklocal.duckdns.org:8443
+    logo: https://upload.wikimedia.org/wikipedia/commons/7/71/Hercules_%28software%29_logo.png
+  - name: MVS TK5 Web Server
+    subtitle: Web server on the TK5 mainframe
+    url: https://tk5.jklocal.duckdns.org:8443
+    icon: fa-solid fa-globe
+

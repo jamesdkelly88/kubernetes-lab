@@ -11,7 +11,7 @@ clusters:
     - kubernetes-dashboard
     - kubernetes-dashboard-ingress
     - kubetail
-    # - mainframe
+    - mainframe
     - policy-reporter
     config:
     - external-secrets

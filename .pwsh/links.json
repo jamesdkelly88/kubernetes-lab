@@ -1,0 +1,96 @@
+[
+  {
+    "name": "ArgoCD",
+    "icon": "argo-cd.svg",
+    "address": "argocd",
+    "description": "CI/CD controller",
+    "group": "Applications"
+  },
+  {
+    "name": "Echo",
+    "icon": "fa-solid fa-comments",
+    "address": "echo",
+    "description": "Sample manifest application",
+    "group": "Applications"
+  },
+  {
+    "name": "Flux Capacitor",
+    "icon": "flux-cd.svg",
+    "address": "flux",
+    "description": "GUI for FluxCD",
+    "group": "Applications"
+  },
+  {
+    "name": "Hello",
+    "icon": "fa-solid fa-globe-europe",
+    "address": "hello",
+    "description": "Sample helm application",
+    "group": "Applications"
+  },
+  {
+    "name": "Homer",
+    "icon": "homer.svg",
+    "address": "homer",
+    "description": "This dashboard",
+    "group": "Applications"
+  },
+  {
+    "name": "Homepage",
+    "icon": "homepage.png",
+    "address": "homepage",
+    "description": "Another dashboard",
+    "group": "Applications"
+  },
+  {
+    "name": "Kubernetes Dashboard",
+    "icon": "kubernetes.svg",
+    "address": "dashboard",
+    "description": "Official Kubernetes dashboard",
+    "group": "Applications"
+  },
+  {
+    "name": "Kubetail",
+    "icon": "https://raw.githubusercontent.com/kubetail-org/kubetail/refs/heads/main/dashboard-ui/public/favicon.svg",
+    "address": "kubetail",
+    "description": "Kubernetes logging dashboard",
+    "group": "Applications"
+  },
+  {
+    "name": "Longhorn",
+    "icon": "longhorn.svg",
+    "address": "longhorn",
+    "description": "Persistent Volume dashboard",
+    "group": "Applications"
+  },
+  {
+    "name": "Mainframe FileBrowser",
+    "bundle": "mainframe",
+    "icon": "filebrowser.svg",
+    "address": "mainframe-files",
+    "description": "File manager for all mainframe volumes",
+    "group": "Applications"
+  },
+  {
+    "name": "MVS TK5 Hercules",
+    "bundle": "mainframe",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/7/71/Hercules_%28software%29_logo.png",
+    "address": "tk5-hercules",
+    "description": "System console on the TK5 mainframe",
+    "group": "Applications"
+  },
+  {
+    "name": "MVS TK5 Web Server",
+    "bundle": "mainframe",
+    "icon": "fa-solid fa-globe",
+    "address": "tk5",
+    "description": "Web server on the TK5 mainframe",
+    "group": "Applications"
+  },
+  {
+    "name": "Policy Reporter",
+    "icon": "https://raw.githubusercontent.com/cncf/artwork/refs/heads/main/projects/kyverno/icon/color/kyverno-icon-color.svg",
+    "address": "kyverno",
+    "description": "Kyverno and Trivy dashboard",
+    "group": "Applications"
+  }
+]

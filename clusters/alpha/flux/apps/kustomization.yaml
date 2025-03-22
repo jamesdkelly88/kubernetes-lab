@@ -9,5 +9,6 @@ resources:
 - ../../../../apps/base/kubernetes-dashboard/
 - ../../../../apps/local/kubernetes-dashboard-ingress/
 - ../../../../apps/local/kubetail/
+- ../../../../apps/local/mainframe/
 - ../../../../apps/local/policy-reporter/
 
