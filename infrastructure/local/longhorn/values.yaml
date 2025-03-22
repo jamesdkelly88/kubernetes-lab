@@ -1,6 +1,9 @@
 persistence:
   defaultClass: true
+  defaultClassReplicaCount: 1
 ingress:
   enabled: true
   host: longhorn.jklocal.duckdns.org
   tls: true
+longhornUI:
+  replicas: 1
