@@ -6,14 +6,16 @@ clusters:
     - echo
     - flux-capacitor
     - hello
+    - homepage
     - homer
     - kubernetes-dashboard
     - kubernetes-dashboard-ingress
     - kubetail
+    # - mainframe
     - policy-reporter
     config:
     - external-secrets
-    - kyverno-chart
+    # - kyverno-chart
     # - kyverno-policies
     infrastructure:
     - external-secrets-store
@@ -37,6 +39,7 @@ clusters:
     - policy-reporter
     config:
     - external-secrets
+    - openebs
     - kyverno-yaml
     # - kyverno-policies
     infrastructure:

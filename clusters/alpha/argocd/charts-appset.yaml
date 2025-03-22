@@ -16,6 +16,15 @@ spec:
         repository: https://cloudecho.github.io/charts/
         serverside: "false"
         version: 0.1.2
+      - appName: homepage
+        branch: main
+        chart: homepage
+        environment: local
+        namespace: homepage
+        replace: "false"
+        repository: https://jameswynn.github.io/helm-charts
+        serverside: "false"
+        version: 2.0.1
       - appName: kubernetes-dashboard
         branch: main
         chart: kubernetes-dashboard

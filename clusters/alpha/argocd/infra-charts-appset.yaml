@@ -16,15 +16,6 @@ spec:
         repository: https://charts.external-secrets.io
         serverside: "false"
         version: 0.14.4
-      - appName: kyverno-chart
-        branch: main
-        chart: kyverno
-        environment: base
-        namespace: kyverno
-        replace: "false"
-        repository: https://kyverno.github.io/kyverno/
-        serverside: "false"
-        version: 3.3.7
       - appName: ingress-nginx
         branch: main
         chart: ingress-nginx
