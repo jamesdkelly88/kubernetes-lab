@@ -55,6 +55,10 @@ services:
     subtitle: This dashboard
     url: https://homer.jklocal.duckdns.org:8443#beta
     logo: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/homer.svg
+  - name: Kubernetes Dashboard
+    subtitle: Official Kubernetes dashboard
+    url: https://dashboard.jklocal.duckdns.org:8443
+    logo: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/kubernetes.svg
   - name: Kubetail
     subtitle: Kubernetes logging dashboard
     url: https://kubetail.jklocal.duckdns.org:8443
@@ -71,4 +75,8 @@ services:
     subtitle: Web server on the TK5 mainframe
     url: https://tk5.jklocal.duckdns.org:8443
     icon: fa-solid fa-globe
+  - name: Policy Reporter
+    subtitle: Kyverno and Trivy dashboard
+    url: https://kyverno.jklocal.duckdns.org:8443
+    logo: https://raw.githubusercontent.com/cncf/artwork/refs/heads/main/projects/kyverno/icon/color/kyverno-icon-color.svg
 

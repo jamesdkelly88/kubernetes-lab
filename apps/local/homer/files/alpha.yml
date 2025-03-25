@@ -43,6 +43,10 @@ services:
     subtitle: Sample manifest application
     url: https://echo.jklocal.duckdns.org
     icon: fa-solid fa-comments
+  - name: Flux Capacitor
+    subtitle: GUI for FluxCD
+    url: https://flux.jklocal.duckdns.org
+    logo: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/flux-cd.svg
   - name: Hello
     subtitle: Sample helm application
     url: https://hello.jklocal.duckdns.org
@@ -55,6 +59,10 @@ services:
     subtitle: This dashboard
     url: https://homer.jklocal.duckdns.org#alpha
     logo: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/homer.svg
+  - name: Kubernetes Dashboard
+    subtitle: Official Kubernetes dashboard
+    url: https://dashboard.jklocal.duckdns.org
+    logo: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/kubernetes.svg
   - name: Kubetail
     subtitle: Kubernetes logging dashboard
     url: https://kubetail.jklocal.duckdns.org
@@ -71,4 +79,8 @@ services:
     subtitle: Web server on the TK5 mainframe
     url: https://tk5.jklocal.duckdns.org
     icon: fa-solid fa-globe
+  - name: Policy Reporter
+    subtitle: Kyverno and Trivy dashboard
+    url: https://kyverno.jklocal.duckdns.org
+    logo: https://raw.githubusercontent.com/cncf/artwork/refs/heads/main/projects/kyverno/icon/color/kyverno-icon-color.svg
 

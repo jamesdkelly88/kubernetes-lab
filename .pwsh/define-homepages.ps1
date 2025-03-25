@@ -56,10 +56,10 @@ foreach($clusterName in $config.clusters.Keys)
 
   foreach($a in $apps)
   {
-    if($a -in $links.name)
+    if($a -in $links.name -or $a.replace("-"," ") -in $links.name)
     {
       Write-Host "Adding: $a"
-      $targets += $links.Where{ $_.name -eq $a}
+      $targets += $links.Where{ $_.name -eq $a -or $_.name.replace(" ","-") -eq $a}
     }
     if($a -in $links.bundle)
     {
