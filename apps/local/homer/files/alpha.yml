@@ -59,10 +59,6 @@ services:
     subtitle: Kubernetes logging dashboard
     url: https://kubetail.jklocal.duckdns.org
     logo: https://raw.githubusercontent.com/kubetail-org/kubetail/refs/heads/main/dashboard-ui/public/favicon.svg
-  - name: Longhorn
-    subtitle: Persistent Volume dashboard
-    url: https://longhorn.jklocal.duckdns.org
-    logo: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/longhorn.svg
   - name: Mainframe FileBrowser
     subtitle: File manager for all mainframe volumes
     url: https://mainframe-files.jklocal.duckdns.org

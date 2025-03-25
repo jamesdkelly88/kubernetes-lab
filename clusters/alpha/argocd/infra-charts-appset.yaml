@@ -16,15 +16,15 @@ spec:
         repository: https://charts.external-secrets.io
         serverside: "false"
         version: 0.14.4
-      - appName: longhorn
+      - appName: openebs
         branch: main
-        chart: longhorn
-        environment: local
-        namespace: longhorn-system
+        chart: openebs
+        environment: base
+        namespace: openebs
         replace: "false"
-        repository: https://charts.longhorn.io
+        repository: https://openebs.github.io/openebs
         serverside: "false"
-        version: 1.8.1
+        version: 4.2.0
       - appName: ingress-nginx
         branch: main
         chart: ingress-nginx
