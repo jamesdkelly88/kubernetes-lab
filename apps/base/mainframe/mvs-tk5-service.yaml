@@ -14,4 +14,8 @@ spec:
       protocol: TCP
       port: 8080
       targetPort: httpd
+    - name: terminal
+      protocol: TCP
+      port: 3270
+      targetPort: terminal
   type: ClusterIP

@@ -8,3 +8,5 @@ controller:
   service:
     type: NodePort
   watchIngressWithoutClass: true
+tcp:
+  "3270": mainframe/mvs-tk5:terminal" 
