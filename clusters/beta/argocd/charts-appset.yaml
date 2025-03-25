@@ -24,7 +24,7 @@ spec:
         replace: "false"
         repository: https://jameswynn.github.io/helm-charts
         serverside: "false"
-        version: 2.0.1
+        version: 2.0.2
       - appName: kubernetes-dashboard
         branch: main
         chart: kubernetes-dashboard
@@ -42,7 +42,7 @@ spec:
         replace: "false"
         repository: https://kubetail-org.github.io/helm-charts/
         serverside: "false"
-        version: 0.9.8
+        version: 0.9.9
       - appName: policy-reporter
         branch: main
         chart: policy-reporter

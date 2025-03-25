@@ -15,7 +15,7 @@ spec:
         replace: "false"
         repository: https://charts.external-secrets.io
         serverside: "false"
-        version: 0.14.4
+        version: 0.15.0
       - appName: openebs
         branch: main
         chart: openebs
@@ -33,7 +33,7 @@ spec:
         replace: "false"
         repository: https://kubernetes.github.io/ingress-nginx
         serverside: "false"
-        version: 4.12.0
+        version: 4.12.1
       - appName: trivy-operator
         branch: main
         chart: trivy-operator
@@ -42,7 +42,7 @@ spec:
         replace: "false"
         repository: https://aquasecurity.github.io/helm-charts/
         serverside: "false"
-        version: 0.26.1
+        version: 0.27.0
       - appName: trivy-polr-adapter
         branch: main
         chart: trivy-operator-polr-adapter
