@@ -16,6 +16,15 @@ spec:
         repository: https://charts.external-secrets.io
         serverside: "false"
         version: 0.14.4
+      - appName: opa-gatekeeper
+        branch: main
+        chart: gatekeeper
+        environment: base
+        namespace: gatekeeper-system
+        replace: "false"
+        repository: https://open-policy-agent.github.io/gatekeeper/charts
+        serverside: "false"
+        version: 3.18.2
       - appName: openebs
         branch: main
         chart: openebs

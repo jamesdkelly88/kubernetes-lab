@@ -17,6 +17,7 @@ clusters:
     - external-secrets
     # - kyverno-chart
     # - kyverno-policies
+    - opa-gatekeeper
     - openebs
     infrastructure:
     - external-secrets-store
