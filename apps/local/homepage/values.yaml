@@ -48,6 +48,10 @@ serviceAccount:
 # This enables the service account to access the necessary resources
 enableRbac: true
 
+env:
+- name: HOMEPAGE_ALLOWED_HOSTS
+  value: homepage.jklocal.duckdns.org
+
 ingress:
   main:
     enabled: true
