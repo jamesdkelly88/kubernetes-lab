@@ -5,7 +5,7 @@ locals {
       ip_address = "127.0.0.1"
       dns_domain = "jklocal.duckdns.org"
       # renovate: datasource=github-releases depName=kubernetes/kubernetes
-      k8s_version = "1.32.2"
+      k8s_version = "1.32.3"
       ports = {
         80    = 80
         443   = 443
@@ -21,7 +21,7 @@ locals {
       ip_address = "127.0.0.1"
       dns_domain = "jklocal.duckdns.org"
       # renovate: datasource=github-releases depName=kubernetes/kubernetes
-      k8s_version = "1.32.2"
+      k8s_version = "1.32.3"
       ports = {
         8080  = 80
         8443  = 443
@@ -38,7 +38,7 @@ locals {
       ip_address = "127.0.0.1"
       dns_domain = "jklocal.duckdns.org"
       # renovate: datasource=github-releases depName=kubernetes/kubernetes
-      k8s_version = "1.32.2"
+      k8s_version = "1.32.3"
       ports = {
         8888  = 80
         9443  = 443
