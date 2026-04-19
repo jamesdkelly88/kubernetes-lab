@@ -8,102 +8,29 @@ terraform {
   }
 
   required_providers {
-    akeyless = {
-      source  = "akeyless-community/akeyless"
-      version = ">= 1.0.0"
+    bitwarden-secrets = {
+      source  = "bitwarden/bitwarden-secrets"
+      version = "0.5.4-pre"
     }
-
-    dns = {
-      source  = "hashicorp/dns"
-      version = "3.4.2"
+    netbox = {
+      source  = "e-breuninger/netbox"
+      version = "~> 5.0"
     }
-
-    helm = {
-      source  = "hashicorp/helm"
-      version = "3.0.0-pre2"
-    }
-
-    http = {
-      source  = "hashicorp/http"
-      version = "3.4.5"
-    }
-
-    kind = {
-      source  = "tehcyx/kind"
-      version = "0.8.0"
-    }
-
-    kubectl = {
-      source  = "gavinbunney/kubectl"
-      version = ">= 1.7.0"
-    }
-
-    kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = "2.36.0"
-    }
-
-    kustomization = {
-      source  = "kbst/kustomization"
-      version = "0.9.6"
-    }
-
-    null = {
-      source  = "hashicorp/null"
-      version = "3.2.3"
-    }
-
-    time = {
-      source  = "hashicorp/time"
-      version = "0.13.0"
+    talos = {
+      source  = "siderolabs/talos"
+      version = "0.11.0-beta.2"
     }
   }
 }
 
-provider "akeyless" {
-  api_gateway_address = "https://api.akeyless.io"
-
-  api_key_login {
-    access_id  = var.akeyless_id
-    access_key = var.akeyless_key
-  }
+provider "bitwarden-secrets" {
+  api_url      = "https://api.bitwarden.com"
+  identity_url = "https://identity.bitwarden.com"
 }
 
-provider "dns" {}
-
-provider "helm" {
-  kubernetes = {
-    host                   = local.host.type == "kind" ? kind_cluster.kind[0].endpoint : null
-    client_certificate     = local.host.type == "kind" ? kind_cluster.kind[0].client_certificate : null
-    client_key             = local.host.type == "kind" ? kind_cluster.kind[0].client_key : null
-    cluster_ca_certificate = local.host.type == "kind" ? kind_cluster.kind[0].cluster_ca_certificate : null
-  }
+provider "netbox" {
+  server_url           = "https://netbox2.jk88.duckdns.org"
+  allow_insecure_https = true
+  request_timeout      = 120
+  api_token            = data.bitwarden-secrets_secret.secrets["netbox"].value
 }
-
-provider "http" {}
-
-provider "kind" {}
-
-provider "kubectl" {
-  host                   = local.host.type == "kind" ? kind_cluster.kind[0].endpoint : null
-  client_certificate     = local.host.type == "kind" ? kind_cluster.kind[0].client_certificate : null
-  client_key             = local.host.type == "kind" ? kind_cluster.kind[0].client_key : null
-  cluster_ca_certificate = local.host.type == "kind" ? kind_cluster.kind[0].cluster_ca_certificate : null
-  load_config_file       = false
-}
-
-
-provider "kubernetes" {
-  host                   = local.host.type == "kind" ? kind_cluster.kind[0].endpoint : null
-  client_certificate     = local.host.type == "kind" ? kind_cluster.kind[0].client_certificate : null
-  client_key             = local.host.type == "kind" ? kind_cluster.kind[0].client_key : null
-  cluster_ca_certificate = local.host.type == "kind" ? kind_cluster.kind[0].cluster_ca_certificate : null
-}
-
-provider "kustomization" {
-  kubeconfig_raw = local.host.type == "kind" ? kind_cluster.kind[0].kubeconfig : null
-}
-
-provider "null" {}
-
-provider "time" {}

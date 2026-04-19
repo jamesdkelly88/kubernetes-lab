@@ -1,23 +1,39 @@
 output "ip_address" {
-  value = local.host.ip_address
+  value = local.ip
 }
+
+# output "vm" {
+#   value = local.vm
+# }
 
 output "cluster" {
-  value = var.cluster
+  value = local.context.cluster
 }
 
-output "type" {
-  value = local.host.type
+output "kubernetes_version" {
+  value = local.context.kubernetes_version
 }
 
-output "endpoint" {
-  value = local.host.type == "kind" ? kind_cluster.kind[0].endpoint : null
+output "talos_version" {
+  value = local.context.talos_version
+}
+resource "local_file" "machine_configuration" {
+  content  = talos_machine_configuration_apply.this.machine_configuration
+  filename = "config.yml"
 }
 
-# output secret_test {
-#   value = nonsensitive(data.akeyless_static_secret.test.value)
-# }
+resource "local_file" "kubeconfig" {
+  content  = talos_cluster_kubeconfig.this.kubeconfig_raw
+  filename = "kubeconfig"
 
-# output "dns_test" {
-#   value = join(",", data.dns_a_record_set.duckdns.addrs)
-# }
+}
+
+resource "local_file" "talosconfig" {
+  content = templatefile("${path.module}/talosconfig.tpl", { 
+    ip = local.ip
+    ca = data.talos_client_configuration.this.client_configuration.ca_certificate
+    crt = data.talos_client_configuration.this.client_configuration.client_certificate
+    key = data.talos_client_configuration.this.client_configuration.client_key
+  })
+  filename = "talosconfig"
+}
