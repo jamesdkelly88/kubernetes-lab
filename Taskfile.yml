@@ -2,158 +2,28 @@ version: '3'
 
 dotenv: [".env"]
 
-vars:
-  DOCS_URL: https://taskfile.dev/usage/
-
 tasks:
-
-# Git
-
-  setup-hooks:
-    desc: Create repo hooks
-    silent: true
-    aliases:
-      - "hooks"
-    cmds:
-    - echo "pwsh .pwsh/define-clusters.ps1" > .git/hooks/pre-commit
-    - chmod +x .git/hooks/pre-commit
-
-# Task
-
-  docs:
-    desc: Open the Taskfile docs
-    silent: true
-    cmds:
-    - task: docs_linux
-    - task: docs_mac
-    - task: docs_windows
-
-  docs_linux:
-    internal: true
-    platforms: [linux]
-    silent: true
-    cmds:
-    - xdg-open {{.DOCS_URL}}
-    - exit 0
-
-  docs_mac:
-    internal: true
-    platforms: [darwin]
-    silent: true
-    cmds:
-    - open {{.DOCS_URL}}
-
-  docs_windows:
-    internal: true
-    platforms: [windows]
-    silent: true
-    cmds:
-    - start {{.DOCS_URL}}
-
   hello:
+    cmd: echo "Hello from task"
+    desc: Hello World
+    silent: true
+  list:
+    cmd: task --list
+    desc: List all tasks
+    silent: true
+  terraform:
     cmds:
-      - echo "Hello from task"
-
-# Kubernetes
-
-  # apply kustomize folder
-  # remove kustomize folder
-  # upgrade
-  # token for dashboard
-
-  argo-password:
-    aliases:
-      - argo
-    cmd: kubectl get secrets/argocd-initial-admin-secret -n argocd --template=\{\{.data.password\}\} | base64 -d
-    desc: Get ArgoCD default admin password
-    requires:
-      vars: [ KUBECONFIG ]
-    silent: true
-
-  dashboard-token:
-    aliases:
-      - dashboard
-    cmd: kubectl create token admin-user -n kubernetes-dashboard
-    desc: Get login token for Kubernetes Dashboard
-    requires:
-      vars: [ KUBECONFIG ]
-    silent: true
-
-  lint:
-    cmd: kube-linter lint .
-    desc: Lint kubernetes manifests
-    silent: true
-
-# Terraform
-
-  init:
-    cmds:
-    - terraform init -upgrade
-    desc: Initialise terraform
-    dir: '{{ .ROOT_DIR }}/terraform'
-    env:
-      TF_WORKSPACE: "{{.CLUSTER}}"
-      TF_TOKEN_app_terraform_io: "{{.TERRAFORM_TOKEN}}"
-    requires:
-      vars: [ CLUSTER, TERRAFORM_TOKEN ]
-    silent: true
-
-  plan:
-    cmds:
-    - task: init
-    - terraform fmt *.tf
+    - terraform fmt --recursive
     - tflint
-    - terraform plan {{.DESTROY}}-var cluster={{.CLUSTER}} -var akeyless_id={{.AKEYLESS_ID}} -var akeyless_key={{.AKEYLESS_KEY}} -input=false -out=tfplan
-    desc: Run terraform plan for a cluster
+    - terraform init -upgrade
+    - terraform {{ .ACTION }}
+    desc: Plan/Apply/Destroy cluster with Terraform
     dir: '{{ .ROOT_DIR }}/terraform'
     env:
-      TF_WORKSPACE: "{{.CLUSTER}}"
-      TF_TOKEN_app_terraform_io: "{{.TERRAFORM_TOKEN}}"
+      TF_WORKSPACE: "{{ .HOST | upper }}"
+      TF_TOKEN_app_terraform_io: "{{ .TF_TOKEN_app_terraform_io }}"
     requires:
-      vars: [ AKEYLESS_ID, AKEYLESS_KEY, CLUSTER, TERRAFORM_TOKEN ]
+      vars: [ HOST, TF_TOKEN_app_terraform_io ]
     silent: true
     vars:
-      DESTROY: '{{.DESTROY | default "" }}'
-
-  build:
-    cmds:
-    - task: plan
-    - terraform apply tfplan
-    desc: Build a cluster with terraform
-    dir: '{{ .ROOT_DIR }}/terraform'
-    env:
-      TF_WORKSPACE: "{{.CLUSTER}}"
-      TF_TOKEN_app_terraform_io: "{{.TERRAFORM_TOKEN}}"
-    requires:
-      vars: [ CLUSTER, TERRAFORM_TOKEN ]
-    silent: true
-
-  destroy:
-    cmds:
-    - task: init
-    - terraform state rm kubernetes_namespace.external-secrets
-    - task: plan
-      vars: { DESTROY: '-destroy ' }
-    - terraform apply tfplan
-    desc: Destroy a cluster with terraform
-    dir: '{{ .ROOT_DIR }}/terraform'
-    env:
-      TF_WORKSPACE: "{{.CLUSTER}}"
-      TF_TOKEN_app_terraform_io: "{{.TERRAFORM_TOKEN}}"
-    requires:
-      vars: [ CLUSTER, TERRAFORM_TOKEN ]
-    silent: true
-
-  force-delete:
-    cmds:
-    - terraform state rm $(terraform state list)
-    - kind delete cluster -n {{.CLUSTER}}
-    - echo "Remember to delete akeyless secrets"
-    desc: Delete a cluster when terraform destroy fails
-    dir: '{{ .ROOT_DIR }}/terraform'
-    env:
-      TF_WORKSPACE: "{{.CLUSTER}}"
-      TF_TOKEN_app_terraform_io: "{{.TERRAFORM_TOKEN}}"
-    requires:
-      vars: [ CLUSTER, TERRAFORM_TOKEN ]
-    silent: true
+      ACTION: '{{ .ACTION | default "plan" }}'

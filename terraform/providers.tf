@@ -12,6 +12,10 @@ terraform {
       source  = "bitwarden/bitwarden-secrets"
       version = "0.5.4-pre"
     }
+    local = {
+      source  = "hashicorp/local"
+      version = "2.8.0"
+    }
     netbox = {
       source  = "e-breuninger/netbox"
       version = "~> 5.0"

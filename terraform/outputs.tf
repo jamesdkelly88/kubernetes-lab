@@ -29,9 +29,9 @@ resource "local_file" "kubeconfig" {
 }
 
 resource "local_file" "talosconfig" {
-  content = templatefile("${path.module}/talosconfig.tpl", { 
-    ip = local.ip
-    ca = data.talos_client_configuration.this.client_configuration.ca_certificate
+  content = templatefile("${path.module}/talosconfig.tpl", {
+    ip  = local.ip
+    ca  = data.talos_client_configuration.this.client_configuration.ca_certificate
     crt = data.talos_client_configuration.this.client_configuration.client_certificate
     key = data.talos_client_configuration.this.client_configuration.client_key
   })
