@@ -42,3 +42,7 @@ terraform.rc
 
 # pester output
 results.xml
+
+# kubernetes config files
+kubeconfig/
+talosconfig/

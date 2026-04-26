@@ -37,3 +37,15 @@ This is the code repository for the Kubernetes in my homelab. All clusters are d
 ## Useful commands
 
 TBC
+
+### Upgrading
+
+- Check the [compatibility matrix](https://docs.siderolabs.com/talos/latest/getting-started/support-matrix)
+- Upgrade Talos - [available versions](https://github.com/siderolabs/talos/releases)
+```sh
+talosctl upgrade --preserve --image ghcr.io/siderolabs/installer:v1.x.y"
+```
+- Upgrade Kubernetes - [available versions](https://github.com/siderolabs/kubelet/releases) **you should always go to the latest minor version before a major version upgrade**
+```sh
+talosctl upgrade-k8s --to 1.x.y
+```

@@ -1,7 +1,9 @@
 { pkgs ? import <nixpkgs> {config.allowUnfree = true;} }:pkgs.mkShell {
   packages = with pkgs; [
+    bws
     gh
     go-task
+    jq
     kubectl
     talosctl
     terraform

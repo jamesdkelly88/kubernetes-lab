@@ -2,7 +2,19 @@ version: '3'
 
 dotenv: [".env"]
 
+vars:
+  # colour codes for output
+  BLUE: "\e[34m"
+  CYAN: "\e[36m"
+  GREEN: "\e[32m"
+  MAGENTA: "\e[35m"
+  RED: "\e[31m"
+  RESET: "\e[0m"
+  WHITE: "\e[37m"
+  YELLOW: "\e[33m"
+
 tasks:
+  # task generic
   hello:
     cmd: echo "Hello from task"
     desc: Hello World
@@ -11,13 +23,15 @@ tasks:
     cmd: task --list
     desc: List all tasks
     silent: true
+
+  # build
   terraform:
     cmds:
     - terraform fmt --recursive
     - tflint
     - terraform init -upgrade
     - terraform {{ .ACTION }}
-    desc: Plan/Apply/Destroy cluster with Terraform
+    desc: Configure cluster with Terraform [ACTION = plan(default)|apply|destroy]
     dir: '{{ .ROOT_DIR }}/terraform'
     env:
       TF_WORKSPACE: "{{ .HOST | upper }}"
@@ -27,3 +41,118 @@ tasks:
     silent: true
     vars:
       ACTION: '{{ .ACTION | default "plan" }}'
+
+  # cli tools
+  kubectl:
+    cmd: kubectl --kubeconfig=kubeconfig/{{ .HOST }} {{ .FUNCTION }}
+    # internal: true
+    preconditions:
+      - test -f kubeconfig/{{ .HOST }}
+    requires:
+      vars: [ HOST, FUNCTION ]
+    silent: true
+  talosctl:
+    cmd: talosctl -e {{ .HOST }} -n {{ .HOST }} --talosconfig talosconfig/{{ .HOST }} {{ .FUNCTION }}
+    # internal: true
+    preconditions:
+      - test -f talosconfig/{{ .HOST }}
+    requires:
+      vars: [ HOST, FUNCTION ]
+    silent: true
+
+  # config files
+  cleanup:
+    cmds:
+    - rm -rf kubeconfig
+    - rm -rf talosconfig
+    desc: Cleanup Kubernetes and Talos config files
+    silent: true
+  kubeconfig:
+    cmds: 
+    - mkdir -p kubeconfig
+    - bws secret list -t {{ .BW_ACCESS_TOKEN }} | jq -r '.[] | select(.key == "kubeconfig/{{ .HOST }}" ).value' > kubeconfig/{{ .HOST }}
+    desc: Get kubeconfig file for host
+    requires:
+      vars: [ HOST, BW_ACCESS_TOKEN ]
+    silent: true
+  talosconfig:
+    cmds: 
+    - mkdir -p talosconfig
+    - bws secret list -t {{ .BW_ACCESS_TOKEN }} | jq -r '.[] | select(.key == "talosconfig/{{ .HOST }}" ).value' > talosconfig/{{ .HOST }}
+    desc: Get talosconfig file for host
+    requires:
+      vars: [ HOST, BW_ACCESS_TOKEN ]
+    silent: true
+
+  # operational 
+  reboot:
+    cmds:
+    - task: talosctl
+      vars:
+        HOST: "{{ .HOST }}"
+        FUNCTION: reboot
+    desc: Reboot Talos host
+    requires:
+      vars: [ HOST ]
+    silent: true
+  shutdown:
+    cmds:
+    - task: talosctl
+      vars:
+        HOST: "{{ .HOST }}"
+        FUNCTION: shutdown
+    desc: Shutdown Talos host
+    requires:
+      vars: [ HOST ]
+    silent: true
+  status:
+    cmds:
+    - task: talosctl
+      vars:
+        HOST: "{{ .HOST }}"
+        FUNCTION: dashboard
+    desc: Show Talos dashboard
+    requires:
+      vars: [ HOST ]
+    silent: true
+  test:
+    cmds:
+    - echo -e "{{.RED}}Testing Talos connectivity{{.RESET}}"
+    - task: talosctl
+      vars:
+        HOST: "{{ .HOST }}"
+        FUNCTION: version
+    - echo -e "{{.BLUE}}Testing Kubernetes connectivity{{.RESET}}"
+    - task: kubectl
+      vars:
+        HOST: "{{ .HOST }}"
+        FUNCTION: get nodes -o wide
+    desc: Test connectivity to host
+    requires:
+      vars: [ HOST ]
+    silent: true
+  upgrade-k8s:
+    cmds:
+    - task: talosctl
+      vars:
+        HOST: "{{ .HOST }}"
+        FUNCTION: "upgrade-k8s --to {{ .VERSION }}"
+    # TODO: update netbox config json
+    desc: Upgrade Kubernetes version (requires VERSION without the v)
+    requires:
+      vars: [ HOST, VERSION ]
+    silent: true
+  upgrade-talos:
+    cmds:
+    - task: talosctl
+      vars:
+        HOST: "{{ .HOST }}"
+        FUNCTION: "upgrade --preserve --image ghcr.io/siderolabs/installer:v{{ .VERSION }}"
+    # TODO: update netbox config json
+    desc: Upgrade Talos version (requires VERSION without the v)
+    requires:
+      vars: [ HOST, VERSION ]
+    silent: true
+  
+
+  
