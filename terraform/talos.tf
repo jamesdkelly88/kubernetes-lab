@@ -21,16 +21,7 @@ resource "talos_machine_configuration_apply" "this" {
   client_configuration        = talos_machine_secrets.this.client_configuration
   machine_configuration_input = data.talos_machine_configuration.this.machine_configuration
   node                        = local.ip
-  config_patches = [
-    yamlencode({
-      machine = {
-        install = {
-          disk  = "/dev/${local.context.install_disk}"
-          image = "ghcr.io/siderolabs/installer:v${local.context.talos_version}" # https://github.com/siderolabs/terraform-provider-talos/issues/272
-        }
-      }
-    })
-  ]
+  config_patches              = local.patches
 }
 
 resource "talos_machine_bootstrap" "this" {

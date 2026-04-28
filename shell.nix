@@ -1,13 +1,22 @@
-{ pkgs ? import <nixpkgs> {config.allowUnfree = true;} }:pkgs.mkShell {
+{ pkgs ? import <nixpkgs> { config.allowUnfree = true; } }:
+
+let
+  unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {
+    config.allowUnfree = true;
+  };
+in
+
+pkgs.mkShell {
   packages = with pkgs; [
     bws
     gh
     go-task
     jq
     kubectl
-    talosctl
     terraform
     tflint
+  ] ++ [
+    unstable.talosctl
   ];
 
   shellHook = ''

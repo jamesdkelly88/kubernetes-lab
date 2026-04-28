@@ -12,6 +12,10 @@ terraform {
       source  = "bitwarden/bitwarden-secrets"
       version = "0.5.4-pre"
     }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "3.1.0"
+    }
     local = {
       source  = "hashicorp/local"
       version = "2.8.0"
@@ -24,12 +28,24 @@ terraform {
       source  = "siderolabs/talos"
       version = "0.11.0-beta.2"
     }
+    time = {
+      source  = "hashicorp/time"
+      version = "0.13.1"
+    }
   }
 }
 
 provider "bitwarden-secrets" {
   api_url      = "https://api.bitwarden.com"
   identity_url = "https://identity.bitwarden.com"
+}
+
+provider "kubernetes" {
+  host = data.talos_machine_configuration.this.cluster_endpoint
+
+  client_certificate     = base64decode(talos_cluster_kubeconfig.this.kubernetes_client_configuration.client_certificate)
+  client_key             = base64decode(talos_cluster_kubeconfig.this.kubernetes_client_configuration.client_key)
+  cluster_ca_certificate = base64decode(talos_cluster_kubeconfig.this.kubernetes_client_configuration.ca_certificate)
 }
 
 provider "netbox" {
