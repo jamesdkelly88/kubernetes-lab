@@ -85,6 +85,16 @@ tasks:
     silent: true
 
   # operational 
+  forward:
+    cmds:
+    - task: kubectl
+      vars:
+        HOST: "{{ .HOST }}"
+        FUNCTION: "port-forward -n {{ .NS }} service/{{ .SVC }} {{ .LOCAL }}:{{ .PORT }}"
+    desc: Forward a Kubernetes service to a local port
+    requires:
+      vars: [ HOST, SVC, LOCAL, NS, PORT ]
+    silent: true
   reboot:
     cmds:
     - task: talosctl
@@ -100,8 +110,8 @@ tasks:
     - task: kubectl
       vars:
         HOST: "{{ .HOST }}"
-        FUNCTION: get secret -n {{ .N }} {{ .S }} -o jsonpath='{.data.{{ .K }}}' | base64 --decode
-    desc: Get a value from a Kubernetes secret (N=namespace, S=secret, K=key)
+        FUNCTION: get secret -n {{ .NS }} {{ .SECRET }} -o jsonpath='{.data.{{ .KEY }}}' | base64 --decode
+    desc: Get a value from a Kubernetes secret
     requires:
       vars: [ HOST, K, N, S ]
     silent: true

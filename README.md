@@ -106,6 +106,7 @@ terraform apply
 task kubeconfig HOST=xxxx
 export KUBECONFIG=kubeconfig/xxxx
 flux get all
+flux reconcile kustomization app
 ```
 
 ## To use kubectl
