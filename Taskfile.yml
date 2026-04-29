@@ -95,6 +95,16 @@ tasks:
     requires:
       vars: [ HOST ]
     silent: true
+  secret:
+    cmds:
+    - task: kubectl
+      vars:
+        HOST: "{{ .HOST }}"
+        FUNCTION: get secret -n {{ .N }} {{ .S }} -o jsonpath='{.data.{{ .K }}}' | base64 --decode
+    desc: Get a value from a Kubernetes secret (N=namespace, S=secret, K=key)
+    requires:
+      vars: [ HOST, K, N, S ]
+    silent: true
   shutdown:
     cmds:
     - task: talosctl

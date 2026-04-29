@@ -1,30 +1,82 @@
 # kubernetes-lab
 
+- [kubernetes-lab](#kubernetes-lab)
+  - [Logical flow](#logical-flow)
+  - [Structure](#structure)
+  - [To use kubectl](#to-use-kubectl)
+  - [To use terraform](#to-use-terraform)
+    - [Upgrading](#upgrading)
+
+
 This is the code repository for the Kubernetes in my homelab. All clusters are deployed as single nodes running Talos Linux using Terraform and FluxCD.
 
-## Structure (WIP)
+## Logical flow
+
+- Terraform installs and configures Talos
+- Terraform creates API key secret for `external-secrets`
+- Terraform installs Flux using Helm chart
+- Terraform configures repository for Flux
+- Terraform configures Flux to target `cluster/name`
+- `cluster/name/kustomization.yaml` contains a list of `.yaml` files in `overlay`
+- Each `.yaml` file in `overlay` is a Flux Kustomization targeting a folder in `template`
+- Each folder in `template` contains a Kubernetes Kustomization and resource manifests
+- Terraform is used to refresh secrets, change branch/cluster target and upgrade Flux
+
+<!-- TODO: can the Flux helm chart be included in the repo for self-updating? -->
+
+## Structure
 
 ```
 ├── .github
 │   └── actions
+|
 ├── .vscode
 │   └── settings.json
-├── apps
+|
+├── cluster
+│   ├── cluster1
+│   │   └── kustomization.yaml       # list of flux kustomizations in overlay folder
+│   └── cluster2
+│       └── kustomization.yaml       
+|
+├── overlay
+│   ├── core-app.yaml                # flux kustomize for app with no environment overlays
 │   ├── helm-app
-│   │   ├── base
-│   │   ├── staging
-│   │   └── production
+│   │   ├── dev.yaml                 # flux kustomize for app with environment-specific overlays
+│   │   ├── staging.yaml
+│   │   └── production.yaml
 │   └── manifest-app
-│       ├── base
+│       ├── dev
 │       ├── staging
 │       └── production
-├── flux
-│   ├── cluster1
-│   │   └── kustomization.yaml
-│   └── cluster2
-│       └── kustomization.yaml
+|
+├── template
+│   ├── helm-app
+|   |   ├── base
+|   │   |   ├── kustomization.yaml   # kubernetes manifests for app
+|   |   |   └── resource(s).yaml
+|   |   ├── dev
+|   │   |   └── kustomization.yaml   # dev environment overlay for app
+|   |   ├── staging
+|   │   |   └── kustomization.yaml   # staging environment overlay for app
+|   |   └── production
+|   │       └── kustomization.yaml   # production environment overlay for app
+│   ├── manifest-app
+|   |   └── base
+|   │       ├── kustomization.yaml
+|   |       └── resource(s).yaml
+│   └── kustomizeconfig.yaml         # config patch to allow Helm values customisation
+|
 ├── terraform
-│   └── cluster
+|   ├── data.tf                      
+|   ├── flux.tf                      # flux helm deployment and repository bootstrap
+|   ├── locals.tf                    
+|   ├── outputs.tf
+|   ├── patches.tf                   # talos machine config patches
+|   ├── providers.tf
+|   ├── secrets.tf                   # upload talosconfig and kubeconfig, create token secret for external-secrets to access BWS
+|   └── talos.tf                     # talos cluster config generation and bootstrap
+|
 ├── .env
 ├── .gitignore
 ├── LICENSE
@@ -34,9 +86,25 @@ This is the code repository for the Kubernetes in my homelab. All clusters are d
 └── Taskfile.yml
 ```
 
-## Useful commands
+## To use kubectl
 
-TBC
+```sh
+task kubeconfig HOST=xxxx
+export KUBECONFIG=kubeconfig/xxxx
+kubectl get nodes
+```
+
+## To use terraform
+```sh
+export TF_WORKSPACE=xxxx
+export TF_TOKEN_app_terraform_io=<secret>
+export BW_ORGANIZATION_ID=<guid>
+export BW_ACCESS_TOKEN=<secret>
+cd terraform
+terraform init
+terraform plan
+terraform apply
+```
 
 ### Upgrading
 
