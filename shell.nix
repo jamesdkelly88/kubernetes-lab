@@ -9,6 +9,7 @@ in
 pkgs.mkShell {
   packages = with pkgs; [
     bws
+    fluxcd
     gh
     go-task
     jq

@@ -3,8 +3,10 @@
 - [kubernetes-lab](#kubernetes-lab)
   - [Logical flow](#logical-flow)
   - [Structure](#structure)
-  - [To use kubectl](#to-use-kubectl)
   - [To use terraform](#to-use-terraform)
+  - [To use flux cli](#to-use-flux-cli)
+  - [To use kubectl](#to-use-kubectl)
+  - [To use talosctl](#to-use-talosctl)
     - [Upgrading](#upgrading)
 
 
@@ -75,7 +77,8 @@ This is the code repository for the Kubernetes in my homelab. All clusters are d
 |   ├── patches.tf                   # talos machine config patches
 |   ├── providers.tf
 |   ├── secrets.tf                   # upload talosconfig and kubeconfig, create token secret for external-secrets to access BWS
-|   └── talos.tf                     # talos cluster config generation and bootstrap
+|   ├── talos.tf                     # talos cluster config generation and bootstrap
+|   └── talosconfig.tpl              # talosconfig yaml template
 |
 ├── .env
 ├── .gitignore
@@ -84,14 +87,6 @@ This is the code repository for the Kubernetes in my homelab. All clusters are d
 ├── renovate.json
 ├── shell.nix
 └── Taskfile.yml
-```
-
-## To use kubectl
-
-```sh
-task kubeconfig HOST=xxxx
-export KUBECONFIG=kubeconfig/xxxx
-kubectl get nodes
 ```
 
 ## To use terraform
@@ -105,6 +100,30 @@ terraform init
 terraform plan
 terraform apply
 ```
+
+## To use flux cli
+```sh
+task kubeconfig HOST=xxxx
+export KUBECONFIG=kubeconfig/xxxx
+flux get all
+```
+
+## To use kubectl
+
+```sh
+task kubeconfig HOST=xxxx
+export KUBECONFIG=kubeconfig/xxxx
+kubectl get nodes
+```
+
+## To use talosctl
+
+```sh
+task talosconfig HOST=xxxx
+export TALOSCONFIG=talosconfig/xxxx
+talosctl version
+```
+
 
 ### Upgrading
 
