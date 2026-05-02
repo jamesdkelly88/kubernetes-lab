@@ -13,3 +13,6 @@ spec:
         name: external-secrets
         namespace: external-secrets
       interval: 12h
+  values:
+    bitwarden-sdk-server:
+      enabled: true
