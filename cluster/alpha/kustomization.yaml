@@ -4,3 +4,4 @@ resources:
 - ../../overlay/cert-manager.yaml
 - ../../overlay/echo.yaml
 - ../../overlay/external-secrets.yaml
+- ../../overlay/external-secrets-store.yaml
