@@ -5,4 +5,5 @@ resources:
 - ../../overlay/echo.yaml
 - ../../overlay/external-secrets.yaml
 - ../../overlay/external-secrets-store.yaml
+- ../../overlay/gateway-api.yaml
 - ../../overlay/test-secret.yaml
