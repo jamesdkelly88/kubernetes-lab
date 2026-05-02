@@ -5,6 +5,9 @@ resources:
   - namespace.yaml
   - repository.yaml
   - release.yaml
+  - selfsigned-issuer.yaml
+  - selfsigned-ca.yaml
+  - ca-issuer.yaml
 
 configMapGenerator:
 - name: values
