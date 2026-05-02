@@ -5,6 +5,7 @@ namespace: external-secrets
 resources:
   - repository.yaml
   - release.yaml
+  - certificate.yaml
 
 configMapGenerator:
 - name: values
