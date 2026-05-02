@@ -135,6 +135,14 @@ tasks:
     requires:
       vars: [ HOST ]
     silent: true
+  sync:
+    cmd: flux --kubeconfig=kubeconfig/{{ .HOST }} reconcile kustomization {{ .APP }}
+    desc: Reconcile FluxCD kustomization
+    preconditions:
+      - test -f kubeconfig/{{ .HOST }}
+    requires:
+      vars: [ HOST, APP ]
+    silent: true
   test:
     cmds:
     - echo -e "{{.RED}}Testing Talos connectivity{{.RESET}}"
