@@ -8,6 +8,7 @@
   - [To use kubectl](#to-use-kubectl)
   - [To use talosctl](#to-use-talosctl)
     - [Upgrading](#upgrading)
+  - [Useful commands](#useful-commands)
 
 
 This is the code repository for the Kubernetes in my homelab. All clusters are deployed as single nodes running Talos Linux using Terraform and FluxCD.
@@ -137,3 +138,7 @@ talosctl upgrade --preserve --image ghcr.io/siderolabs/installer:v1.x.y"
 ```sh
 talosctl upgrade-k8s --to 1.x.y
 ```
+
+## Useful commands
+
+- Get ports that are being listened to by deployment: `kubectl -n <namespace> exec deploy/<name> -- ss -tlnp`
