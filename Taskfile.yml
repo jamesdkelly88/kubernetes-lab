@@ -113,7 +113,7 @@ tasks:
         FUNCTION: get secret -n {{ .NS }} {{ .SECRET }} -o jsonpath='{.data.{{ .KEY }}}' | base64 --decode
     desc: Get a value from a Kubernetes secret
     requires:
-      vars: [ HOST, K, N, S ]
+      vars: [ HOST, KEY, NS, SECRET ]
     silent: true
   shutdown:
     cmds:
