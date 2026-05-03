@@ -11,6 +11,11 @@ locals {
     yamlencode({
       cluster = {
         allowSchedulingOnControlPlanes = true
+        apiServer = {
+          extraArgs = {
+            service-node-port-range = "1-32767"
+          }
+        }
       }
     }),
     yamlencode({

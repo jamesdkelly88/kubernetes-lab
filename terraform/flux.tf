@@ -5,6 +5,7 @@ resource "helm_release" "flux" {
   version          = "2.18.3"
   namespace        = "flux-system"
   create_namespace = true
+  depends_on       = [time_sleep.wait_for_cluster]
 }
 
 resource "time_sleep" "wait_for_flux" {
@@ -12,42 +13,23 @@ resource "time_sleep" "wait_for_flux" {
   create_duration = "2m"
 }
 
-resource "kubernetes_manifest" "repo" {
+resource "k8sconnect_object" "flux_repo" {
+  yaml_body = templatefile("${path.module}/templates/gitrepository.tpl", {
+    name      = "github"
+    namespace = "flux-system"
+    branch    = local.context.branch
+    url       = "https://github.com/jamesdkelly88/kubernetes-lab"
+  })
+  cluster    = local.cluster
   depends_on = [time_sleep.wait_for_flux]
-  manifest = {
-    apiVersion = "source.toolkit.fluxcd.io/v1"
-    kind       = "GitRepository"
-    metadata = {
-      name      = "github"
-      namespace = "flux-system"
-    }
-    spec = {
-      interval = "1m0s"
-      ref = {
-        branch = local.context.branch
-      }
-      url = "https://github.com/jamesdkelly88/kubernetes-lab"
-    }
-  }
 }
 
-resource "kubernetes_manifest" "kustomize" {
-  depends_on = [kubernetes_manifest.repo]
-  manifest = {
-    apiVersion = "kustomize.toolkit.fluxcd.io/v1"
-    kind       = "Kustomization"
-    metadata = {
-      name      = local.context.cluster
-      namespace = "flux-system"
-    }
-    spec = {
-      interval = "10m0s"
-      path     = "./cluster/${local.context.cluster}"
-      prune    = true
-      sourceRef = {
-        kind = "GitRepository"
-        name = "github"
-      }
-    }
-  }
+resource "k8sconnect_object" "flux_kustomize" {
+  yaml_body = templatefile("${path.module}/templates/kustomization.tpl", {
+    name       = local.context.cluster
+    path       = "./cluster/${local.context.cluster}"
+    repository = "github"
+  })
+  cluster    = local.cluster
+  depends_on = [k8sconnect_object.flux_repo]
 }

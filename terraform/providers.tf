@@ -16,9 +16,9 @@ terraform {
       source  = "hashicorp/helm"
       version = "3.1.1"
     }
-    kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = "3.1.0"
+    k8sconnect = {
+      source  = "jmorris0x0/k8sconnect"
+      version = "0.3.7"
     }
     local = {
       source  = "hashicorp/local"
@@ -51,13 +51,6 @@ provider "helm" {
     client_key             = base64decode(talos_cluster_kubeconfig.this.kubernetes_client_configuration.client_key)
     cluster_ca_certificate = base64decode(talos_cluster_kubeconfig.this.kubernetes_client_configuration.ca_certificate)
   }
-}
-
-provider "kubernetes" {
-  host                   = data.talos_machine_configuration.this.cluster_endpoint
-  client_certificate     = base64decode(talos_cluster_kubeconfig.this.kubernetes_client_configuration.client_certificate)
-  client_key             = base64decode(talos_cluster_kubeconfig.this.kubernetes_client_configuration.client_key)
-  cluster_ca_certificate = base64decode(talos_cluster_kubeconfig.this.kubernetes_client_configuration.ca_certificate)
 }
 
 provider "netbox" {

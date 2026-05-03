@@ -41,6 +41,16 @@ tasks:
     silent: true
     vars:
       ACTION: '{{ .ACTION | default "plan" }}'
+  purge:
+    cmd: terraform state rm $(terraform state list)
+    desc: Purge Terraform state
+    dir: '{{ .ROOT_DIR }}/terraform'
+    env:
+      TF_WORKSPACE: "{{ .HOST | upper }}"
+      TF_TOKEN_app_terraform_io: "{{ .TF_TOKEN_app_terraform_io }}"
+    requires:
+      vars: [ HOST, TF_TOKEN_app_terraform_io ]
+    silent: true
 
   # cli tools
   kubectl:

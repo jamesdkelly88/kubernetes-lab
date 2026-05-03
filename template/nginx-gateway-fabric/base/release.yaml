@@ -8,3 +8,11 @@ spec:
   chartRef:
     kind: OCIRepository
     name: nginx-gateway-fabric
+  values:
+    nginx:
+      service:
+        type: NodePort
+        nodePorts:
+        - port: 80
+          listenerPort: 80
+

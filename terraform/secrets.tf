@@ -1,6 +1,6 @@
 resource "bitwarden-secrets_secret" "talosconfig" {
   key = "talosconfig/${local.name}"
-  value = templatefile("${path.module}/talosconfig.tpl", {
+  value = templatefile("${path.module}/templates/talosconfig.tpl", {
     ip   = local.ip
     name = local.name
     ca   = data.talos_client_configuration.this.client_configuration.ca_certificate
@@ -17,26 +17,29 @@ resource "bitwarden-secrets_secret" "kubeconfig" {
 }
 
 resource "time_sleep" "wait_for_cluster" {
-  depends_on = [talos_cluster_kubeconfig.this]
-
+  depends_on      = [talos_cluster_kubeconfig.this]
   create_duration = "3m"
 }
 
-resource "kubernetes_namespace_v1" "external-secrets" {
-  metadata {
+resource "k8sconnect_object" "external_secrets_ns" {
+  yaml_body = templatefile("${path.module}/templates/namespace.tpl", {
     name = "external-secrets"
-  }
+  })
+  cluster    = local.cluster
   depends_on = [time_sleep.wait_for_cluster]
 }
 
-resource "kubernetes_secret_v1" "bws" {
-  metadata {
+resource "k8sconnect_object" "bws_secret" {
+  yaml_body = templatefile("${path.module}/templates/secret.tpl", {
     name      = "bitwarden-access-token"
     namespace = "external-secrets"
-  }
-  data = {
-    token = data.bitwarden-secrets_secret.secrets["bws"].value
-  }
-  type       = "kubernetes.io/generic"
-  depends_on = [kubernetes_namespace_v1.external-secrets]
+    data = [
+      {
+        key   = "token",
+        value = data.bitwarden-secrets_secret.secrets["bws"].value
+      }
+    ]
+  })
+  cluster    = local.cluster
+  depends_on = [k8sconnect_object.external_secrets_ns]
 }
