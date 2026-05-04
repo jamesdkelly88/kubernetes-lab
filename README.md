@@ -142,3 +142,4 @@ talosctl upgrade-k8s --to 1.x.y
 ## Useful commands
 
 - Get ports that are being listened to by deployment: `kubectl -n <namespace> exec deploy/<name> -- ss -tlnp`
+- Test MetalLB L2 advertisement: `sudo arping -I <local-interface> <vip>`
