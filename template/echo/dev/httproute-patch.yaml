@@ -1,0 +1,3 @@
+- op: replace
+  path: /spec/hostnames
+  value: ["echo.jkdev.duckdns.org"]

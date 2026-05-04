@@ -5,4 +5,8 @@ namespace: echo
 resources:
   - namespace.yaml
   - deployment.yaml
-  - service.yaml
+  - cluster-service.yaml
+  - httproute.yaml
+  # - lb-service.yaml
+  # - nodeport-service.yaml
+  # - tcproute.yaml

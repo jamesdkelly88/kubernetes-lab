@@ -105,6 +105,16 @@ tasks:
     requires:
       vars: [ HOST, SVC, LOCAL, NS, PORT ]
     silent: true
+  headlamp:
+    cmds:
+    - task: kubectl
+      vars:
+        HOST: "{{ .HOST }}"
+        FUNCTION: "create token headlamp-admin -n kube-system"
+    desc: Generate token for logging into Headlamp
+    requires:
+      vars: [ HOST ]
+    silent: true
   reboot:
     cmds:
     - task: talosctl
