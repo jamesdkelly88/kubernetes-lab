@@ -9,6 +9,8 @@ resources:
 - ../../overlay/gateway-api.yaml
 - ../../overlay/gateway/alpha.yaml
 - ../../overlay/headlamp/dev.yaml
+- ../../overlay/longhorn/dev.yaml
 - ../../overlay/metallb.yaml
+- ../../overlay/metallb-pool/dev.yaml
 - ../../overlay/nginx-gateway-fabric.yaml
 - ../../overlay/test-secret.yaml

@@ -195,7 +195,7 @@ tasks:
     - task: talosctl
       vars:
         HOST: "{{ .HOST }}"
-        FUNCTION: "upgrade --preserve --image ghcr.io/siderolabs/installer:v{{ .VERSION }}"
+        FUNCTION: "upgrade --preserve --image factory.talos.dev/metal-installer/613e1592b2da41ae5e265e8789429f22e121aab91cb4deb6bc3c0b6262961245:v{{ .VERSION }}"
     # TODO: update netbox config json
     desc: Upgrade Talos version (requires VERSION without the v)
     requires:
