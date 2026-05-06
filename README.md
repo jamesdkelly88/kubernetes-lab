@@ -9,6 +9,7 @@
   - [To use talosctl](#to-use-talosctl)
     - [Upgrading](#upgrading)
   - [Useful commands](#useful-commands)
+  - [Hints and Tips](#hints-and-tips)
 
 
 This is the code repository for the Kubernetes in my homelab. All clusters are deployed as single nodes running Talos Linux using Terraform and FluxCD.
@@ -143,3 +144,9 @@ talosctl upgrade-k8s --to 1.x.y
 
 - Get ports that are being listened to by deployment: `kubectl -n <namespace> exec deploy/<name> -- ss -tlnp`
 - Test MetalLB L2 advertisement: `sudo arping -I <local-interface> <vip>`
+
+## Hints and Tips
+
+- To reattach a Longhorn PV after it is released:
+  - Update the PVC definition to include the `volumeName` in the spec
+  - Edit the PV definition and remove `metadata/uid` and `spec/claimRef` - Headlamp has a good editor for this
