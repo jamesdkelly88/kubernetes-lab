@@ -16,6 +16,7 @@ spec:
   values:
     defaultSettings:
       defaultReplicaCount: 1
+      storageMinimalAvailablePercentage: 10
     persistence:
       reclaimPolicy: Retain
       defaultClassReplicaCount: 1
