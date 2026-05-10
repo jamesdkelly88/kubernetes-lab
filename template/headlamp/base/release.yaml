@@ -19,4 +19,6 @@ spec:
         enabled: false
     kong:
       enabled: true
-      
+    serviceAccount:
+      create: true
+      name: headlamp-admin

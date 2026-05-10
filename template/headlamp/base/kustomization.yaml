@@ -6,6 +6,4 @@ resources:
   - namespace.yaml
   - repository.yaml
   - release.yaml
-  - serviceaccount.yaml
-  - clusterrolebinding.yaml
   - httproute.yaml
