@@ -13,3 +13,5 @@ spec:
   path: ./template/longhorn/dev
   prune: true
   wait: true
+  dependsOn:
+  - name: gateway
