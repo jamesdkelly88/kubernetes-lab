@@ -11,6 +11,6 @@ resources:
 - ../../overlay/headlamp/dev.yaml
 - ../../overlay/longhorn/dev.yaml
 - ../../overlay/metallb.yaml
-- ../../overlay/metallb-pool/alpha.yaml
+- ../../overlay/metallb-pool/mu.yaml
 - ../../overlay/nginx-gateway-fabric.yaml
 - ../../overlay/test-secret.yaml
