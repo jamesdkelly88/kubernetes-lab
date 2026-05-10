@@ -14,6 +14,7 @@ pkgs.mkShell {
     go-task
     jq
     kubectl
+    kubernetes-helm
     terraform
     tflint
   ] ++ [

@@ -7,6 +7,7 @@
   - [To use flux cli](#to-use-flux-cli)
   - [To use kubectl](#to-use-kubectl)
   - [To use talosctl](#to-use-talosctl)
+  - [To use helm cli](#to-use-helm-cli)
     - [Upgrading](#upgrading)
   - [Useful commands](#useful-commands)
   - [Hints and Tips](#hints-and-tips)
@@ -125,6 +126,19 @@ kubectl get nodes
 task talosconfig HOST=xxxx
 export TALOSCONFIG=talosconfig/xxxx
 talosctl version
+```
+
+## To use helm cli
+```sh
+export KUBECONFIG=kubeconfig/host
+helm repo add flux https://fluxcd-community.github.io/helm-charts
+helm install flux flux/flux2 --version 2.18.3  --namespace flux-system --create-namespace
+helm list -A
+```
+
+The example above performs a manual install of Flux if the terraform fails. This can then be imported into the state with:
+```sh
+terraform import helm_release.flux flux-system/flux
 ```
 
 
