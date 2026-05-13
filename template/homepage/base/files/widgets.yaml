@@ -1,0 +1,36 @@
+- kubernetes:
+    cluster:
+      show: false
+      cpu: true
+      memory: true
+      showLabel: true
+      label: "cluster"
+    nodes:
+      show: false
+      cpu: true
+      memory: true
+      showLabel: true
+- datetime:
+    format:
+      dateStyle: short
+      timeStyle: short
+- resources:
+    cpu: true
+    memory: true
+    disk: /
+    cputemp: false
+    uptime: true
+    units: metric
+    network: default
+- openmeteo:
+    label: Sheffield
+    latitude: 53.3811
+    longitude: 1.466667
+    timezone: Europe/London
+    units: metric
+    cache: 15
+    format:
+      maximumFractionDigits: 1
+- search:
+    provider: google
+    target: _blank

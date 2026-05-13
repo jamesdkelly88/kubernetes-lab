@@ -1,0 +1,27 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: homepage
+
+resources:
+  - namespace.yaml
+  - serviceaccount.yaml
+  - secret.yaml
+  - clusterrole.yaml
+  - clusterrolebinding.yaml
+  - deployment.yaml
+  - service.yaml
+  - httproute.yaml
+
+configMapGenerator:
+- name: homepage-config
+  behavior: create
+  files:
+  - files/bookmarks.yaml
+  - files/custom.css
+  - files/custom.js
+  - files/docker.yaml
+  - files/kubernetes.yaml
+  - files/proxmox.yaml
+  - files/services.yaml
+  - files/settings.yaml
+  - files/widgets.yaml
