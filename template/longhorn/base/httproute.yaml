@@ -12,7 +12,7 @@ spec:
   parentRefs:
   - name: gateway
     namespace: nginx-gateway
-    sectionName: http
+    sectionName: https
   hostnames: ["change.me"]
   rules:
   - matches:

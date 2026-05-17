@@ -8,13 +8,19 @@ spec:
   - name: http
     port: 80
     protocol: HTTP
-    hostname: "*.jkdev.duckdns.org"
+    hostname: "change.me"
     allowedRoutes:
       namespaces:
         from: All
-  - name: test
-    port: 5678
-    protocol: TCP
+  - name: https
+    port: 443
+    protocol: HTTPS
+    hostname: "change.me"
     allowedRoutes:
       namespaces:
         from: All
+    tls:
+      certificateRefs:
+      - kind: Secret
+        group: ""
+        name: duckdns-cert

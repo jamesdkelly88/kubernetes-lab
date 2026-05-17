@@ -3,4 +3,30 @@ kind: Kustomization
 namespace: nginx-gateway
 
 resources:
-  - gateway.yaml
+- ../base/
+
+patches:
+- path: certificate-patch.yaml
+  target:
+    group: external-secrets.io
+    version: v1
+    kind: ExternalSecret
+    name: duckdns-cert
+- path: hostname-patch.yaml
+  target:
+    group: gateway.networking.k8s.io
+    version: v1
+    kind: Gateway
+    name: gateway
+- path: test-listener-patch.yaml
+  target:
+    group: gateway.networking.k8s.io
+    version: v1
+    kind: Gateway
+    name: gateway
+- path: disable-http-patch.yaml
+  target:
+    group: gateway.networking.k8s.io
+    version: v1
+    kind: Gateway
+    name: gateway

@@ -12,8 +12,8 @@ spec:
   parentRefs:
   - name: gateway
     namespace: nginx-gateway
-    sectionName: http
-  hostnames: ["echo.jkdev.duckdns.org"]
+    sectionName: https
+  hostnames: ["change.me"]
   rules:
   - matches:
     - path:
