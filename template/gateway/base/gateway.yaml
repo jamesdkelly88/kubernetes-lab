@@ -4,23 +4,4 @@ metadata:
   name: gateway
 spec:
   gatewayClassName: nginx
-  listeners:
-  - name: http
-    port: 80
-    protocol: HTTP
-    hostname: "change.me"
-    allowedRoutes:
-      namespaces:
-        from: All
-  - name: https
-    port: 443
-    protocol: HTTPS
-    hostname: "change.me"
-    allowedRoutes:
-      namespaces:
-        from: All
-    tls:
-      certificateRefs:
-      - kind: Secret
-        group: ""
-        name: duckdns-cert
+  listeners: []

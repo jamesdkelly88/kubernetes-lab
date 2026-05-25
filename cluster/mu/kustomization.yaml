@@ -6,13 +6,13 @@ resources:
 - ../../overlay/echo/dev.yaml
 - ../../overlay/external-secrets.yaml
 - ../../overlay/external-secrets-store.yaml
+- ../../overlay/gateway/mu.yaml
 - ../../overlay/gateway-api.yaml
-- ../../overlay/gateway/alpha.yaml
 - ../../overlay/headlamp/dev.yaml
 - ../../overlay/homepage/dev.yaml
 - ../../overlay/longhorn/dev.yaml
 - ../../overlay/metallb.yaml
-- ../../overlay/metallb-pool/mu.yaml
+- ../../overlay/metallb-pool/dev.yaml
 - ../../overlay/metrics-server.yaml
 - ../../overlay/nginx-gateway-fabric.yaml
 - ../../overlay/test-secret.yaml

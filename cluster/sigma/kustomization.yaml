@@ -3,15 +3,18 @@ kind: Kustomization
 resources:
 - ../../overlay/cert-manager.yaml
 - ../../overlay/cert-manager-ca.yaml
-- ../../overlay/echo/dev.yaml
+- ../../overlay/echo.yaml
 - ../../overlay/external-secrets.yaml
 - ../../overlay/external-secrets-store.yaml
-- ../../overlay/gateway/alpha.yaml
+- ../../overlay/gateway/sigma.yaml
 - ../../overlay/gateway-api.yaml
-- ../../overlay/headlamp/dev.yaml
-- ../../overlay/longhorn/dev.yaml
+- ../../overlay/headlamp.yaml
+- ../../overlay/homepage.yaml
+- ../../overlay/istio.yaml
+- ../../overlay/kubetail.yaml
+- ../../overlay/longhorn.yaml
 - ../../overlay/metallb.yaml
-- ../../overlay/metallb-pool/dev.yaml
+- ../../overlay/metallb-pool/test.yaml
 - ../../overlay/metrics-server.yaml
 - ../../overlay/nginx-gateway-fabric.yaml
 - ../../overlay/test-secret.yaml

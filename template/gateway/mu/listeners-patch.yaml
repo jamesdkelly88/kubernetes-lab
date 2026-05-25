@@ -1,0 +1,15 @@
+op: add
+path: /spec/listeners/-
+value:
+  name: https
+  port: 443
+  protocol: HTTPS
+  allowedRoutes:
+    namespaces:
+      from: All
+  hostname: '*.jkdev.duckdns.org'
+  tls:
+    certificateRefs:
+    - kind: Secret
+      group: ""
+      name: duckdns-cert

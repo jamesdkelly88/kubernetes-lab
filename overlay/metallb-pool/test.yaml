@@ -10,7 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: github
-  path: ./template/metallb-pool/alpha
+  path: ./template/metallb-pool/test
   prune: true
   wait: true
   dependsOn:

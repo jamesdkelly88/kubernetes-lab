@@ -1,0 +1,97 @@
+clusters:
+- name: alpha
+  description: Experimental environment
+  dns: dev
+  apps:
+  - echo
+  - headlamp
+  - longhorn
+  - metrics-server
+  - test-secret
+  ports:
+  - 80
+  - 443
+  - 5678
+- name: beta
+  description: Test environment
+  dns: test
+- name: delta
+  description: Development environment
+  dns: dev
+- name: iota
+  description: Tiny deployment for low power local VM
+  dns: dev
+  apps:
+  - headlamp
+  - longhorn
+  ports:
+  - 443
+- name: mu
+  description: Small deployment for local VM
+  dns: dev
+  apps:
+  - echo
+  - headlamp
+  - homepage
+  - longhorn
+  - metrics-server
+  - test-secret
+  ports:
+  - 443
+- name: sigma
+  description: A copy of everything
+  apps:
+  - "*"
+  dns: test
+- name: upsilon
+  description: Pre-production environment
+  dns: test
+- name: phi
+  descrption: Production environment
+  dns: prod
+ports:
+- 53:
+    name: dns
+    protocol: TCP
+    hostname: false
+    tls: false
+- 80:
+    name: http
+    protocol: HTTP
+    hostname: true
+    tls: false
+- 443:
+    name: https
+    protocol: HTTPS
+    hostname: true
+    tls: true
+- 1433:
+    name: mssql
+    protocol: TCP
+    hostname: false
+    tls: false
+- 5432:
+    name: postgres
+    protocol: TCP
+    hostname: false
+    tls: false
+- 5678:
+    name: test
+    protocol: TCP
+    hostname: false
+    tls: false
+services:
+  core:
+  - cert-manager
+  - cert-manager-ca
+  - external-secrets
+  - external-secrets-store
+  - gateway-api
+  - gateway
+  - metallb
+  - metallb-pool
+  - nginx-gateway-fabric
+zones:
+  dev: jkdev.duckdns.org
+  test: jktest.duckdns.org
+  prod: jk88.duckdns.org

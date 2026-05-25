@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: echo
+  name: gateway
   namespace: flux-system
 spec:
   interval: 1h
@@ -10,6 +10,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: github
-  path: ./template/echo/base
+  path: ./template/gateway/phi
   prune: true
   wait: true
+  dependsOn:
+  - name: nginx-gateway-fabric

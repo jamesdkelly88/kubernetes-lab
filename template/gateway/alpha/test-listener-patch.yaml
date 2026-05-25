@@ -1,9 +1,0 @@
-- op: add
-  path: /spec/listeners/-
-  value:
-    name: test
-    port: 5678
-    protocol: TCP
-    allowedRoutes:
-      namespaces:
-        from: All
